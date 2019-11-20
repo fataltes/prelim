@@ -1,0 +1,333 @@
+\documentclass[12pt, letterpaper, twoside]{report}
+
+%%%%%%%%%% RAINBOWFISH packages and commands %%%%%%%%%%%%%%%
+\usepackage{microtype}%if unwanted, comment out or use option "draft"
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the recommended bibstyle
+
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=figs/]
+
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=newest}
+\usepackage{caption}
+\usepackage[skip=-3pt,belowskip=4pt]{subcaption}
+
+\usepackage{xspace} % deals with the problem of when you want spaces
+                    % after a macro
+\usepackage{textcomp}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{tablefootnote}
+\usepackage{enumitem} % package for easily changing list parameters
+\usepackage[noend]{algpseudocode}
+%\usepackage{natbib}
+\usepackage{url}
+\usepackage{hyperref}
+% \usepackage{fullpage}
+%\usepackage[margin=1in]{geometry} % I think that geometry now improves
+                                % upon fullpage. 
+
+%\usepackage{our-comments}
+
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{xspace}
+%\usepackage{cleveref}
+
+\usepackage{wrapfig}
+\usepackage{times}
+
+\usepackage{amsthm}
+%TODO very important!! WTH is this
+%\DeclareUnicodeCharacter{00A0}{ }
+
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{2ex}{1ex}
+\titlespacing{\subsection}{0pt}{1ex}{0ex}
+\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+
+
+\newcommand{\defn}[1]{{\textit{\textbf{\boldmath #1}}}}
+\newcommand{\cqf}{counting quotient filter\xspace}
+\newcommand{\cqfs}{counting quotient filters\xspace}
+\newcommand{\dbg}{de Bruijn graph\xspace}
+\newcommand{\dbgs}{de Bruijn graphs\xspace}
+\newcommand{\wdbg}{weighted de Bruijn graph\xspace}
+\newcommand{\wdbgs}{weighted de Bruijn graphs\xspace}
+\newcommand{\Wdbg}{Weighted de Bruijn Graph\xspace}
+\newcommand{\Wdbgs}{Weighted de Bruijn Graphs\xspace}
+\newcommand{\cdbg}{colored de Bruijn graph\xspace}
+\newcommand{\cdbgs}{colored de Bruijn graphs\xspace}
+\newcommand{\Cdbg}{Colored de Bruijn Graph\xspace}
+\newcommand{\Cdbgs}{Colored de Bruijn Graphs\xspace}
+\newcommand{\dBG}{de Bruijn graph\xspace}
+\newcommand{\dBGs}{de Bruijn graphs\xspace}
+\newcommand{\cf}{cuckoo filter\xspace}
+\newcommand{\bloomf}{Bloom filter\xspace}
+\newcommand{\cbf}{counting Bloom filter\xspace}
+\newcommand{\vect}[1]{\left[#1\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left(#1\right)}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\kmers}{$k$-mers\xspace}
+\newcommand{\kmer}{$k$-mer\xspace}
+\newcommand{\kmc}{KMC2\xspace}
+\newcommand{\jelly}{Jellyfish2\xspace}
+\newcommand{\squeakr}{Squeakr\xspace}
+\newcommand{\squeakrs}{Squeakr}
+\newcommand{\squeakre}{Squeakr (exact)\xspace}
+\newcommand{\system}{Rainbowfish\xspace}
+\newcommand{\order}[1]{\ensuremath{O(#1)}}
+\newcommand{\vari}{VARI\xspace}
+\newcommand{\boss}{BOSS\xspace}
+\newcommand{\ecoli}{\emph{E. coli}\xspace}
+\newcommand{\plant}{Plant\xspace}
+\newcommand{\beefsafety}{Beef safety\xspace}
+\newcommand{\rank}{\mbox{\sc rank}}
+\newcommand{\select}{\mbox{\sc select}}
+\newcommand{\rrr}{RRR\xspace}
+\newcommand\fnurl[2]{%
+  \href{#2}{#1}\footnote{\url{#2}}%
+}
+\newcommand{\cfun}[1]{\ensuremath{\texttt{Col}(#1)}}
+\newcommand\etal{et al.\xspace}
+\newcommand{\fatemeh}[1]{\textcolor{orange}{[#1]}}
+\newcommand{\cortex}{\texttt{Cortex}\xspace}
+\setlength{\belowcaptionskip}{-0pt}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+%%%%%%%%%% RAINBOWFISH packages and commands %%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%% PUFFERFISH packages and commands %%%%%%%%%%%%%%%
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{graphicx}
+\usepackage{bm}
+
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{multirow}
+\usepackage[justification=centering]{caption}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+%Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
+%english has to go last to set it as default language
+\usepackage[ngerman,english]{babel}
+%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+
+%better font, similar to the default springer font
+%cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+\usepackage[%
+rm={oldstyle=false,proportional=true},%
+sf={oldstyle=false,proportional=true},%
+tt={oldstyle=false,proportional=true,variable=true},%
+qt=false%
+]{cfr-lm}
+%
+%if more space is needed, exchange cfr-lm by mathptmx
+%\usepackage{mathptmx}
+
+%for demonstration purposes only
+\usepackage[math]{blindtext}
+
+%Sorts the citations in the brackets
+%It also allows \cite{refa, refb}. Otherwise, the document does not compile.
+%  Error message: "White space in argument"
+%\usepackage{cite}
+
+
+%% If you need packages for other papers,
+%% START COPYING HERE
+%% COPY ALSO cmap and fontenc from lines 10 to 12
+
+%extended enumerate, such as \begin{compactenum}
+% \usepackage{paralist}
+
+%put figures inside a text
+%\usepackage{picins}
+%use
+%\piccaptioninside
+%\piccaption{...}
+%\parpic[r]{\includegraphics ...}
+%Text...
+
+%for easy quotations: \enquote{text}
+\usepackage{csquotes}
+
+%enable margin kerning
+\usepackage{microtype}
+
+%tweak \url{...}
+\usepackage{url}
+%\urlstyle{same}
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+%DO NOT ACTIVATE -> prevents line breaks
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
+
+%diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+%slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+%\usepackage{diagbox}
+
+%required for pdfcomment later
+\usepackage{xcolor}
+
+
+%enable nice comments
+%this also loads hyperref
+\usepackage{pdfcomment}
+%enable hyperref without colors and without bookmarks
+\hypersetup{hidelinks,
+   colorlinks=true,
+   allcolors=black,
+   pdfstartview=Fit,
+   breaklinks=true}
+%enables correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+%compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+%compatiblity with package fixmetodonotes
+%\newcommand{\TODO}[1]{\commentatside{#1}}
+
+%enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
+\usepackage[capitalise,nameinlink]{cleveref}
+%Nice formats for \cref
+\crefname{section}{Sect.}{Sect.}
+\Crefname{section}{Section}{Sections}
+
+\usepackage{xspace}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{observation}[thm]{\textbf{Observation}}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+%\newtheorem{observation}[thm]{\textbf{Observation}}
+\newcommand{\pufferfish}{pufferfish\xspace}
+\newcommand{\bv}{\texttt{bv}\xspace}
+\newcommand{\ctab}{\texttt{ctab}\xspace}
+\newcommand{\cseq}{\texttt{cseq}\xspace}
+\newcommand{\kallisto}{Kallisto\xspace}
+\newcommand{\bwa}{BWA\xspace}
+\newcommand{\twopaco}{TwoPaCo\xspace}
+\newcommand{\ccdbg}{compacted de Bruijn graph\xspace}
+\newcommand{\ccdbgs}{compacted de Bruijn graphs\xspace}
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%% END COPYING HERE
+
+%%%%%%%%%% PUFFERFISH packages and commands %%%%%%%%%%%%%%%
+
+
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{etex}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+%\usepackage{todonotes}
+\usepackage{bm}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage[font=footnotesize]{caption}
+\usepackage{float}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+
+
+
+\newcommand{\thatis}{i.e.\xspace}
+\newcommand{\forexample}{e.g.\xspace}
+\newcommand{\andothers}{et al.\xspace}
+% Enter dates of publication
+
+
+\title{Space and Time-Efficient Indexing and Query Support Over a Large Collection of Raw or Reference Sequences and Their Downstream Applications}
+
+\author{\\ \\ \textbf{Fatemeh Almodaresi} \\ \\ \\ \textbf{Committee Members:} \\ Professors \\ Rob Patro (advisor) \\ Hector Corrada \\ Mihai Pop \\ David Mount \\ \\ \\ \textbf{Department of Computer Science} \\ \textbf{University of Maryland at College Park} \\ \\ \\ Thesis Proposal \\ \\ }
+
+\date{ December 2019}
+
+ 
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+ 
+\input{abstract}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{introduction}
+
+\input{rainbowfish}
+
+\input{pufferfish}
+
+\input{discussion}
+
+\bibliography{introduction,merged}
+%\input{bibliography}
+
+\end{document}

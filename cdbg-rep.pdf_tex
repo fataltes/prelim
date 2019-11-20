@@ -1,0 +1,119 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'cdbg-rep.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{329.21208572bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.63060188)%
+    \put(0.5253525,0.45070688){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Boundary BV}}}%
+    \put(0.55262998,0.29508262){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Label BV}}}%
+    \put(0.74285838,0.42306246){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$index([1-3)) = 2$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{cdbg-rep.pdf}}%
+    \put(0.84146311,0.26862726){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$lookup(l=2)$}}}%
+    \put(0.71131797,0.61243182){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$select(r=2) = 1$}}}%
+    \put(0.66070013,0.00344471){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Equivalence class table}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{cdbg-rep.pdf}}%
+    \put(0.74249881,0.17730212){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0110010101}}}%
+    \put(0.74310632,0.13872531){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0011110000}}}%
+    \put(0.74310632,0.09589563){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1000011111}}}%
+    \put(0.74280257,0.05549614){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0111110101}}}%
+    \put(0.62042434,0.38866868){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.60086832\unitlength}\raggedright \end{minipage}}}%
+    \put(0.69329397,0.17756811){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.6939015,0.13546773){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.6844849,0.09283852){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{10}}}%
+    \put(0.68478866,0.0492549){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{11}}}%
+    \put(-0.00112627,0.3219241){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Color matrix}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{cdbg-rep.pdf}}%
+    \put(0.2953694,0.29794527){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0011110000}}}%
+    \put(0.29597692,0.25936836){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0110010101}}}%
+    \put(0.29597692,0.21653879){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0111110101}}}%
+    \put(0.29567316,0.17613931){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0110010101}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{cdbg-rep.pdf}}%
+    \put(0.29549285,0.33933242){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1000011111}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{cdbg-rep.pdf}}%
+    \put(0.29554743,0.38114464){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0110010101}}}%
+    \put(0.17924571,0.34024366){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ACTT}}}%
+    \put(0.1793003,0.38205588){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ACTG}}}%
+    \put(0.17912262,0.29885645){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{CTTG}}}%
+    \put(0.17973014,0.25865801){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{TTTC}}}%
+    \put(0.17912262,0.13502949){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ }}}%
+    \put(0.17031355,0.21795477){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ GCGT}}}%
+    \put(0.17061731,0.17634025){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ AGCC}}}%
+    \put(0.17973014,0.09402249){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ }}}%
+    \put(0.17973014,0.05119292){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ }}}%
+    \put(0.17912262,0.0104898){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ }}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{cdbg-rep.pdf}}%
+    \put(0.18559302,0.42295034){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$k$-mer}}}%
+    \put(0.31609498,0.42295034){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Color set}}}%
+    \put(0.79576145,0.56200811){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$next(r=2) = 3$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{cdbg-rep.pdf}}%
+    \put(0.63684616,0.49436374){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.68470694,0.49540434){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{cdbg-rep.pdf}}%
+    \put(0.73112429,0.49446697){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.77898537,0.49550757){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{cdbg-rep.pdf}}%
+    \put(0.82547391,0.49456708){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.8733347,0.49560783){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{cdbg-rep.pdf}}%
+    \put(0.91975204,0.49467046){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.96761283,0.49571106){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{cdbg-rep.pdf}}%
+    \put(0.63626832,0.33569299){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.6841288,0.33673359){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{cdbg-rep.pdf}}%
+    \put(0.73054645,0.33579622){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.77840752,0.33683682){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{cdbg-rep.pdf}}%
+    \put(0.82489607,0.33589633){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.87275685,0.33693708){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{cdbg-rep.pdf}}%
+    \put(0.9191742,0.33599971){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.96703498,0.33704031){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{cdbg-rep.pdf}}%
+  \end{picture}%
+\endgroup%
