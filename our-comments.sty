@@ -1,0 +1,79 @@
+%!TEX root =  paper.tex
+
+% defining some new colors :-)
+
+\definecolor{magenta4}{rgb}{0.5625,0,0.5625}
+\definecolor{green4}{rgb}{0,0.5625,0}
+\definecolor{orange4}{rgb}{0.98,0.31,0.09}
+
+% \newcommand{\fixme}[1]{{\bf\textcolor{red}{ [ FIXME: #1 ]}}}
+
+
+%%%%%%%%% COMMENTS TURNED ON %%%%%%%%% 
+
+\ifcomments
+
+
+\newcommand{\fixme}[1]{{\ifcomments \scriptsize \textcolor{red}{FIXME: {#1}} \fi}}
+
+
+\newcommand{\prashant}[1]{\ifcomments {\noindent \small
+    \textcolor{red} {Prashant: {#1}}} \fi{}}
+
+
+% :-) 
+% {\huge (repetition is the soul of wit.)}
+%\newcommand{\robj}[1]{{\ifcomments \small \textcolor{purple}{RobJ: {#1}} \fi}}
+
+
+\newcommand{\mab}[1]{{\ifcomments \small \textcolor{magenta4}{Michael: {#1}} \fi}}
+
+\newcommand{\marginmab}[1]{{\ifcomments \marginpar{
+      \textcolor{magenta4}{\tiny \sf MAB: {#1}}} \fi}}
+
+
+%\newcommand{\robp}[1]{{\ifcomments \small \textcolor{blue}{RobP: {#1}} \fi}}
+
+%\newcommand{\fatemeh}[1]{{\ifcomments \small \textcolor{red}{fatemeh: {#1}} \fi}}
+
+\usepackage{tikz}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [shape=rectangle,inner sep=0pt,text depth=0pt]
+\usepackage{amssymb}
+\setlength\marginparwidth{6.5em}
+\setlength\marginparsep{.3em}
+\newcommand{\mytodo}[4]{%
+\tikz\node[na](dst){};%
+\marginpar{\raggedright\footnotesize\textcolor{#1}{%
+$\lll$#2$\ggg$%
+\tikz\node[na](src){};\\
+#3}}%
+\textcolor{#1}{#4}%
+\begin{tikzpicture}[overlay]
+  \path[->,#1,thin,dashed](src) edge [out=0] (dst);
+\end{tikzpicture}%
+}
+\reversemarginpar
+\newcommand{\mike}[2][]{\mytodo{red}{Mike}{#2}{#1}}
+\newcommand{\robp}[2][]{\mytodo{blue}{RobP}{#2}{#1}}
+\newcommand{\robj}[2][]{\mytodo{violet}{RobJ}{#2}{#1}}
+\newcommand{\fatemeh}[2][]{\mytodo{purple}{Fatemeh}{#2}{#1}}
+
+%%%%%%%%% COMMENTS TURNED OFF %%%%%%%%% 
+\else
+
+\newcommand{\fixme}[1]{}
+
+
+
+
+\newcommand{\mab}[1]{}
+
+\newcommand{\marginmab}[1]{}
+
+\newcommand{\mike}[2]{}
+\newcommand{\robp}[2]{}
+\newcommand{\robj}[2]{}
+\newcommand{\fatemeh}[2]{}
+
+\fi

@@ -1,32 +1,35 @@
 \chapter{Pufferfish: A space and time-efficient compacted de Bruijn graph index\protect\footnote{A joint work with Hirak Sarkar.}}
 \label{sec:pufferfish}
-\section{Abstract}
-  We present a novel data structure for representing the compacted \dbg for use
-  as a pattern matching index. As the popularity of the \dbg as an index has
-  increased over the past few years, so have the number of proposed
-  representations of this structure. Existing structures typically fall into two
-  categories; those that are hash-based and provide very fast access to the
-  underlying k-mer information and those that are space-frugal and provide
-  asymptotically efficient but practically slower pattern search.
-
-  Our representation achieves a compromise between these two extremes. By
-  building upon a minimum perfect hash function, we provide practically fast
-  k-mer lookup, but by carefully organizing our data structure and making use of
-  succinct representations where applicable, we greatly reduce the space
-  compared to traditional hashing-based implementations. Further, we provide the
-  ability to sample positional information, providing the user with the ability
-  to trade off space for speed in a fine-grained manner.
-
-  We believe this representation strikes a desirable balance between speed and
-  space usage, and it will allow for fast search and read mapping on large
-  reference sequences.
 
 
-% \begin{keywords}
-% de Bruijn Graph, compacted de Bruijn Graph, colored de Bruijn graph, kmer, index, read mapping 
-% \end{keywords}
+%\section{Abstract}
+%  We present a novel data structure for representing the compacted \dbg for use
+%  as a pattern matching index. As the popularity of the \dbg as an index has
+%  increased over the past few years, so have the number of proposed
+%  representations of this structure. Existing structures typically fall into two
+%  categories; those that are hash-based and provide very fast access to the
+%  underlying k-mer information and those that are space-frugal and provide
+%  asymptotically efficient but practically slower pattern search.
+%
+%  Our representation achieves a compromise between these two extremes. By
+%  building upon a minimum perfect hash function, we provide practically fast
+%  k-mer lookup, but by carefully organizing our data structure and making use of
+%  succinct representations where applicable, we greatly reduce the space
+%  compared to traditional hashing-based implementations. Further, we provide the
+%  ability to sample positional information, providing the user with the ability
+%  to trade off space for speed in a fine-grained manner.
+%
+%  We believe this representation strikes a desirable balance between speed and
+%  space usage, and it will allow for fast search and read mapping on large
+%  reference sequences.
+%
+%
+%% \begin{keywords}
+%% de Bruijn Graph, compacted de Bruijn Graph, colored de Bruijn graph, kmer, index, read mapping
+%% \end{keywords}
+%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

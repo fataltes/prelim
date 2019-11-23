@@ -45,8 +45,7 @@
 \usepackage{amssymb}
 \usepackage{color}
 \usepackage{booktabs}
-\usepackage{xspace}
-%\usepackage{cleveref}
+\usepackage[capitalise,nameinlink]{cleveref}
 
 \usepackage{wrapfig}
 \usepackage{times}
@@ -106,7 +105,7 @@
 }
 \newcommand{\cfun}[1]{\ensuremath{\texttt{Col}(#1)}}
 \newcommand\etal{et al.\xspace}
-\newcommand{\fatemeh}[1]{\textcolor{orange}{[#1]}}
+%\newcommand{\fatemeh}[1]{\textcolor{orange}{[#1]}}
 \newcommand{\cortex}{\texttt{Cortex}\xspace}
 \setlength{\belowcaptionskip}{-0pt}
 \newtheorem{lemma}{Lemma}
@@ -121,14 +120,14 @@
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 %\usepackage[square,sort,comma,numbers]{natbib}
-\usepackage{graphicx}
+%\usepackage{graphicx}
 \usepackage{bm}
 
-\usepackage{amsmath}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
+%\usepackage{amsmath}
+%\usepackage{algorithm}
+%\usepackage[noend]{algpseudocode}
 \usepackage{multirow}
-\usepackage[justification=centering]{caption}
+%\usepackage[justification=centering]{caption}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -180,10 +179,10 @@ qt=false%
 \usepackage{csquotes}
 
 %enable margin kerning
-\usepackage{microtype}
+%\usepackage{microtype}
 
 %tweak \url{...}
-\usepackage{url}
+%\usepackage{url}
 %\urlstyle{same}
 %improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
@@ -201,7 +200,7 @@ qt=false%
 %\usepackage{diagbox}
 
 %required for pdfcomment later
-\usepackage{xcolor}
+%\usepackage{xcolor}
 
 
 %enable nice comments
@@ -225,12 +224,10 @@ qt=false%
 %\newcommand{\TODO}[1]{\commentatside{#1}}
 
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
-\usepackage[capitalise,nameinlink]{cleveref}
+%\usepackage[capitalise,nameinlink]{cleveref}
 %Nice formats for \cref
 \crefname{section}{Sect.}{Sect.}
 \Crefname{section}{Section}{Sections}
-
-\usepackage{xspace}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{observation}[thm]{\textbf{Observation}}
@@ -275,20 +272,120 @@ qt=false%
 \usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{etex}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{url}
+%\usepackage{amsmath}
+%\usepackage{graphicx}
+%\usepackage{hyperref}
+%\usepackage{url}
 %\usepackage{todonotes}
-\usepackage{bm}
-\usepackage{xspace}
-\usepackage{booktabs}
+%\usepackage{bm}
+%\usepackage{xspace}
+%\usepackage{booktabs}
 \usepackage{adjustbox}
-\usepackage[font=footnotesize]{subcaption}
-\usepackage[font=footnotesize]{caption}
-\usepackage{float}
+%\usepackage[font=footnotesize]{subcaption}
+%\usepackage[font=footnotesize]{caption}
+\captionsetup{belowskip=4pt,aboveskip=4pt}
+%\usepackage{float}
 
 \usepackage{etoolbox}
+
+%%%%%%%%%% MANTIS packages and commands %%%%%%%%%%%%%%%
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=newest}
+%\usepackage{textcomp}
+%\usepackage{xcolor}
+%\usepackage{amsmath}
+\usepackage{mathtools}
+%\usepackage{algorithm}
+%\usepackage{algorithmicx}
+%\usepackage{cite}
+%\usepackage{float}
+%\usepackage{tablefootnote}
+%\usepackage{enumitem}
+%\usepackage[noend]{algpseudocode}
+%\usepackage{url}
+%\usepackage{hyperref}
+%\usepackage[margin=1in]{geometry}
+%\usepackage{siunitx}
+%\usepackage{amssymb}
+%\usepackage{color}
+%\usepackage{booktabs}
+%\usepackage{wrapfig}
+%\usepackage{multirow}
+
+\usepackage[numbers]{natbib}
+%\usepackage{bibalias}
+%\usepackage{cleveref}
+\usepackage{pbox}
+\usepackage{fancyhdr}
+
+
+% HERE'S HOW WE SWITCH COMMENTS ON AND OFF
+\newif\ifcomments        % here's how we switch comments on and off
+\commentstrue
+%\commentsfalse
+
+\usepackage{our-comments} % here's where we define how we write
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\DeclareRobustCommand{\bigO}{%
+\text{\usefont{OMS}{cmsy}{m}{n}O}%
+}
+
+\newcommand\ourparagraph[1]{\paragraph*{\bf{#1}}}
+
+\renewcommand{\defn}[1]       {{\textit{#1}}}
+
+
+\newcommand{\contains}{\textsc{contains}\xspace}
+\newcommand{\prevsys}{Mantis\xspace}
+\newcommand{\sbt}{SBT\xspace}
+\newcommand{\sbtallsome}{SBT-AllSome\xspace}
+\newcommand{\ssbt}{SSBT\xspace}
+\newcommand{\allsomesbt}{AllSomeSBT\xspace}
+\newcommand{\longcdbg}{colored de Bruijn graph\xspace}
+\newcommand{\longcdbgs}{colored de Bruijn graphs\xspace}
+\newcommand{\longCdbgs}{Colored de Bruijn graphs\xspace}
+\newcommand{\blf}{Bloom filter\xspace}
+\newcommand{\blfs}{Bloom filters\xspace}
+
+\newcommand{\vesca}{\textit{F. vesca}\xspace}
+\newcommand{\gallus}{\textit{G. gallus}\xspace}
+\newcommand{\balbisiana}{\textit{M. balbisiana}\xspace}
+\newcommand{\sapiens}[1]{\textit{H. sapiens #1}\xspace}
+
+\newcommand{\mst}{MST\xspace}
+\newcommand{\mstfull}{Minimum Spanning Tree\xspace}
+\newcommand{\cbv}{color bit-vector\xspace}
+\newcommand{\cbvs}{color bit-vectors\xspace}
+\newcommand{\cc}{color class\xspace}
+\newcommand{\ccs}{color classes\xspace}
+\newcommand{\bbb}{BBB\xspace}
+\newcommand{\kruskal}{Kruskal\xspace}
+\newcommand{\seqothello}{SeqOthello\xspace}
+\newcommand{\tp}{True Positive\xspace}
+\newcommand{\tps}{True Positives\xspace}
+\newcommand{\fp}{False Positive\xspace}
+\newcommand{\fps}{False Positives\xspace}
+\newcommand{\fn}{False Negative\xspace}
+\newcommand{\fns}{False Negatives\xspace}
+\newcommand{\bbv}{boundary bit-vector\xspace}
+\newcommand{\dbv}{delta vector\xspace}
+\newcommand{\pbv}{parent vector\xspace}
+\newcommand{\rainbowfish}{Rainbowfish\xspace}
+\newcommand{\ccid}{\text{ccID}\xspace}
+\newcommand{\idcc}{\text{cc}\xspace}
+\newcommand{\colorid}{color-class ID\xspace}
+\newcommand{\colorids}{color-class IDs\xspace}
+\newcommand\calC{\ensuremath{\mathcal{C}}}
+\newcommand\calD{\ensuremath{\mathcal{D}}}
+\setlength{\belowcaptionskip}{-5pt}
+\captionsetup[subfigure]{skip=7pt}
+
+%%%%%%%%%% MANTIS packages and commands End %%%%%%%%%%%%%%%
 
 \newcommand{\abs}[1]{\left|#1\right|}
 
@@ -325,11 +422,14 @@ qt=false%
 
 \input{rainbowfish}
 
+\input{mantis}
+
 \input{pufferfish}
 
 \input{discussion}
 
-\bibliography{introduction,merged}
+\dbg
+\bibliography{introduction,merged,mantis}
 %\input{bibliography}
 
 \end{document}

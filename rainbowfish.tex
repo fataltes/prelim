@@ -45,31 +45,33 @@
 \label{sec:rainbowfish}
 %\maketitle
 
-\section{Abstract}
 %
-  The \cdbg --- a variant of the \dbg which associates each edge (i.e., \kmer)
-  with some set of colors --- is an increasingly important combinatorial
-  structure in computational biology. Iqbal \etal demonstrated the utility of
-  this structure for representing and assembling a collection (population) of
-  genomes, and showed how it can be used to accurately detect genetic variants.
-  Muggli et al. introduced \vari, a representation of the \cdbg that adopts the
-  \boss representation for the \dbg topology and achieves considerable savings
-  in space over \texttt{Cortex}, albeit with some sacrifice in speed.  The
-  memory-efficient representation of \vari allows the \cdbg to be constructed and
-  analyzed for large datasets, beyond what is possible with \texttt{Cortex}.
-
-In this paper, we introduce \system, a succinct representation of the color
-information of the \cdbg that reduces the space usage even further. Our
-representation also uses \boss to represent the \dbg, but decomposes the color
-sets based on an equivalence relation and exploits the inherent skewness in the
-distribution of these color sets. The \system representation is compressed based
-on the $0$th-order entropy of the color sets, which can lead to a significant
-reduction in the space required to store the relevant information for each edge. In practice,
-\system achieves up to a $20\times$ improvement in space over \vari. \system is
-written in \texttt{C++11} and is available at
-\url{https://github.com/COMBINE-lab/rainbowfish}.
+%\section{Abstract}
+%%
+%  The \cdbg --- a variant of the \dbg which associates each edge (i.e., \kmer)
+%  with some set of colors --- is an increasingly important combinatorial
+%  structure in computational biology. Iqbal \etal demonstrated the utility of
+%  this structure for representing and assembling a collection (population) of
+%  genomes, and showed how it can be used to accurately detect genetic variants.
+%  Muggli et al. introduced \vari, a representation of the \cdbg that adopts the
+%  \boss representation for the \dbg topology and achieves considerable savings
+%  in space over \texttt{Cortex}, albeit with some sacrifice in speed.  The
+%  memory-efficient representation of \vari allows the \cdbg to be constructed and
+%  analyzed for large datasets, beyond what is possible with \texttt{Cortex}.
 %
-
+%In this paper, we introduce \system, a succinct representation of the color
+%information of the \cdbg that reduces the space usage even further. Our
+%representation also uses \boss to represent the \dbg, but decomposes the color
+%sets based on an equivalence relation and exploits the inherent skewness in the
+%distribution of these color sets. The \system representation is compressed based
+%on the $0$th-order entropy of the color sets, which can lead to a significant
+%reduction in the space required to store the relevant information for each edge. In practice,
+%\system achieves up to a $20\times$ improvement in space over \vari. \system is
+%written in \texttt{C++11} and is available at
+%\url{https://github.com/COMBINE-lab/rainbowfish}.
+%%
+%
+%
 
 \section{~Introduction and Related Work}
 
