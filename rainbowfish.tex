@@ -7,8 +7,8 @@
  
 
 % Author macros::begin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\title{\system: A Succinct Colored de Bruijn Graph Representation}
-%\titlerunning{\system} %optional, in case that the title is too long; the running title should fit into the top page column
+%\title{\rainbowfish: A Succinct Colored de Bruijn Graph Representation}
+%\titlerunning{\rainbowfish} %optional, in case that the title is too long; the running title should fit into the top page column
 
 %% Please provide for each author the \author and \affil macro, even when authors have the same affiliation, i.e. for each author there needs to be the  \author and \affil macros
 %\author{Fatemeh Almodaresi}
@@ -41,7 +41,7 @@
 % Editor-only macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\begin{document}
-\chapter{\system: A Succinct Colored de Bruijn Graph Representation\protect\footnote{A joint work with Prashant Pandey accepted in WABI2017}}
+\chapter{\rainbowfish: A Succinct Colored de Bruijn Graph Representation\protect\footnote{A joint work with Prashant Pandey accepted in WABI2017}}
 \label{chap:rainbowfish}
 %\maketitle
 
@@ -59,14 +59,14 @@
 %  memory-efficient representation of \vari allows the \cdbg to be constructed and
 %  analyzed for large datasets, beyond what is possible with \texttt{Cortex}.
 %
-%In this paper, we introduce \system, a succinct representation of the color
+%In this paper, we introduce \rainbowfish, a succinct representation of the color
 %information of the \cdbg that reduces the space usage even further. Our
 %representation also uses \boss to represent the \dbg, but decomposes the color
 %sets based on an equivalence relation and exploits the inherent skewness in the
-%distribution of these color sets. The \system representation is compressed based
+%distribution of these color sets. The \rainbowfish representation is compressed based
 %on the $0$th-order entropy of the color sets, which can lead to a significant
 %reduction in the space required to store the relevant information for each edge. In practice,
-%\system achieves up to a $20\times$ improvement in space over \vari. \system is
+%\rainbowfish achieves up to a $20\times$ improvement in space over \vari. \rainbowfish is
 %written in \texttt{C++11} and is available at
 %\url{https://github.com/COMBINE-lab/rainbowfish}.
 %%
@@ -125,7 +125,7 @@ representation of the color information. By its nature, \boss assigns to every
 
   Though \vari achieves a substantial improvement in space over \cortex, there
   is still a considerable amount of redundancy present in its representation.
-  Both of these systems represent the color set corresponding to each \kmer
+  Both of these rainbowfishs represent the color set corresponding to each \kmer
   independently of other \kmers. Hence a considerable amount of redundant
   information can be present when the color set for each \kmer is represented
   independently. In fact, some existing colored de Bruijn Graph representations,
@@ -138,10 +138,10 @@ representation of the color information. By its nature, \boss assigns to every
   datasets because the space usage of \vari for these datasets can become
   impractical.
 
-  In this paper, we introduce a succinct representation, called \system, of the
+  In this paper, we introduce a succinct representation, called \rainbowfish, of the
   color sets associated to each edge in the \dbg. We also adopt the \boss
   representation of the \dbg topology, and focus, specifically, on how to
-  concisely represent the color information. \system's \cdbg representation is
+  concisely represent the color information. \rainbowfish's \cdbg representation is
   entropy compressed and exploits the high skewness present in the distribution
   of color sets. By exploiting a more efficient decomposition of the set of
   present colors (i.e., in terms of equivalence classes), we achieve a
@@ -149,7 +149,7 @@ representation of the color information. By its nature, \boss assigns to every
   depending on the dataset), while still retaining efficient (i.e., constant
   time) queries.
 
-%In \system, we construct the color class representation from a color list from
+%In \rainbowfish, we construct the color class representation from a color list from
 %\vari~\cite{MuggliBoNo17} which in turn uses an efficient representation of
 %the \dbg that they call it \boss~\cite{BoweOn12} based on the initials of the
 %authors. This representation of \dbg is a generalization of FM indexes that
@@ -158,15 +158,15 @@ representation of the color information. By its nature, \boss assigns to every
 %representation we have a CD-lexicographical ordering of \kmers and the support
 %for two operations of rank(k) and select(i) over this ordered set. rank(k)
 %returns the number of elements before $\kmer_k$ and select(i) returns the
-%exact value of \kmer that has $rank=i$. Both \vari and \system consider \kmers
+%exact value of \kmer that has $rank=i$. Both \vari and \rainbowfish consider \kmers
 %to be in the same order as returned by rank operation on \boss representation
-%of \dbg. \system uses rank-and-select operation to map a \kmer to its color
+%of \dbg. \rainbowfish uses rank-and-select operation to map a \kmer to its color
 %class. In the following section we briefly describe the rank and select
 %operations. 
 
 \section{~Background and definitions}
 
-\system is a succinct representation of the color information, and uses rank and
+\rainbowfish is a succinct representation of the color information, and uses rank and
 select operations to lookup the color class corresponding to \kmers in the \dbg.
 Here, we briefly recapitulate the definition of a succinct data structure and the
 rank and select operations.
@@ -209,7 +209,7 @@ three bits set to one in the 6-bit prefix $B[0,\ldots,5]$ of $B$, and
   %   \fi
   %   }
   \caption{
-    The representation of color information in \system. The ``Color Matrix'' at
+    The representation of color information in \rainbowfish. The ``Color Matrix'' at
     the top represents $6$ distinct $4$-mers, each assigned a color set. $3$ of
     these $4$-mers (ACTG, TTTC, AGCC) have the same color class, labeled $0$,
     and the other $3$ (CTTG, ACTT, and GCGT) each have color classes labeled
@@ -226,14 +226,14 @@ three bits set to one in the 6-bit prefix $B[0,\ldots,5]$ of $B$, and
     \label{fig:cdbg-rep}
 \end{figure}
 
-In this section we first describe the design of \system. We then analyze the
+In this section we first describe the design of \rainbowfish. We then analyze the
 space usage and provide a lower bound for the representation of sets of colors given
-a ranking of \dbg edges. Finally, we discuss the \system implementation.
+a ranking of \dbg edges. Finally, we discuss the \rainbowfish implementation.
 
 \subsection{~Design}
 \label{design}
 
-\system's compact representation of color information is based on two particular
+\rainbowfish's compact representation of color information is based on two particular
 observations. First, it is often the case that many of the \kmers in a \cdbg
 share the same set of colors. More formally, we define an equivalence relation
 $\sim$ over the set of \kmers in the \dbg. Let $\cfun{\cdot}$ denote the
@@ -255,13 +255,13 @@ while reserving larger descriptions for less frequent color classes.
 %expected value of the information available in each color class is low or
 %order-$0$ entropy).
 
-The design of \system is motivated by the above observations. Instead of storing
-the color set for each \kmer separately, \system stores each distinct color
+The design of \rainbowfish is motivated by the above observations. Instead of storing
+the color set for each \kmer separately, \rainbowfish stores each distinct color
 class only once and assigns to each distinct class a label (which, practically,
 is much smaller than the unary encoding of the color class itself).
 %
 %\fatemeh{Furthermore, by replacing the fixed-length label with a variable-length
-%one \system leverages the skewness property of distribution of \kmers across
+%one \rainbowfish leverages the skewness property of distribution of \kmers across
 %distinct color sets to save even more space.}
 %
 %starting from label 0 with 1 bit length. 
@@ -298,16 +298,16 @@ have the shortest label length etc.
 %\kmers, so that the color class appearing as the most frequent label will have
 %the shortest label length (which is 1 bit) etc.
 
-The color class representation in \system has three components. \system stores
+The color class representation in \rainbowfish has three components. \rainbowfish stores
 the mappings between labels and color classes in an \defn{equivalence class
   table (ECT)}. As labels are assigned sequentially, this is simply an array of
 bit vectors encoding the corresponding color sets. Apart from the equivalence
-class table, \system maintains two bit vectors, a \defn{boundary bit vector
+class table, \rainbowfish maintains two bit vectors, a \defn{boundary bit vector
   (BBV)} and a \defn{label bit vector(LBV)}.
 
 All color classes are stored in the equivalence class table (with their
 corresponding labels implicitly being their position). However, we now need to
-store a mapping from \kmers to the variable-length labels. \system stores
+store a mapping from \kmers to the variable-length labels. \rainbowfish stores
 variable-length labels corresponding to each \kmer in the label bit vector. The
 labels are stored in the order in which \kmers are stored in the \dbg
 representation. Specifically, the \kmers are stored in the rank order induced by
@@ -315,7 +315,7 @@ representation. Specifically, the \kmers are stored in the rank order induced by
 the label corresponding to the \kmer of a specific rank, since we do not know
 where such a label begins or how long it is.
 
-To address this, \system maintains another bit vector --- the boundary bit
+To address this, \rainbowfish maintains another bit vector --- the boundary bit
 vector (BBV) --- to mark the boundary of each variable-length label in LBV. The
 BBV is the same size as the LBV and has a bit set
 to 1 at each index where a new label starts in the LBV. Thus, the starting
@@ -323,7 +323,7 @@ position for the label corresponding to the $r$th \kmer can be obtained by
 issuing a \select{(r)} query on BBV, and the length of this label can be
 obtained by simply scanning BBV until we encounter the next set bit.
 
-\Cref{fig:cdbg-rep} shows how the color classes are represented in \system. To
+\Cref{fig:cdbg-rep} shows how the color classes are represented in \rainbowfish. To
 perform a query for the color class corresponding to a \kmer in the \cdbg, we
 first get the rank $r$ of the \kmer in the \dbg. We then perform a select
 operation using $r$ on BBV. The result of the select operation $i$ is the start
@@ -353,9 +353,9 @@ word when starting from current label. This ensures we need only issue a single
 
 
 \subsection{~Space analysis}
-\label{system-space-bound}
+\label{rainbowfish-space-bound}
 
-The color class representation in \system is entropy compressed, i.e.,
+The color class representation in \rainbowfish is entropy compressed, i.e.,
 the space is bounded by the entropy ($H(X_c)$) of the color class distribution. 
 For a dataset in which number of \kmers belonging to each distinct color class are
 similar, the entropy of the color class distribution will be high. On the other
@@ -373,7 +373,7 @@ color classes, the entropy of the color class distribution will be low.
 %\prashant{I have changed the wording in theorem 1. I don't know if it's better or worse.}
 
 \begin{theorem}
-Given an ordering of edges (or \kmers) in a \dbg, the space needed by \system to
+Given an ordering of edges (or \kmers) in a \dbg, the space needed by \rainbowfish to
 represent a set of colors attached to each edge is $\order{MC+N H(X_c)}$ bits,
 where $M$ is the number of distinct color classes, $C$ is the number of colors,
 $N$ is the number of distinct \kmers, and $H(X_c) = -\sum_{i=1}^{M} P(x_i)\log
@@ -385,13 +385,13 @@ color classes.
 
 \begin{proof}
 %
-The space needed by \system can be analyzed as follows. There are three bit
-vectors in \system, the equivalence class table, label bit vector, and boundary bit
+The space needed by \rainbowfish can be analyzed as follows. There are three bit
+vectors in \rainbowfish, the equivalence class table, label bit vector, and boundary bit
 vector. To store an equivalence class table containing $M$ distinct color
 classes each having $C$ colors we need $MC$ bits. To store a label bit vector
 (as stated in \Cref{label-size-bound}), for $N$ \kmers, where each label
 corresponds to one of the $M$ distinct color classes, takes $N\log_2{M}$ bits.
-However, as explained in \Cref{design}, in \system we assign (optimal) variable-length
+However, as explained in \Cref{design}, in \rainbowfish we assign (optimal) variable-length
 labels based on the frequency of color classes. Therefore, the space needed to
 store the label bit vector is dependent on the $0$th-order entropy of the color
 class variable, $H(X_c)$, and the size of the label bit vector is upper bounded
@@ -404,7 +404,7 @@ label bit vector.
 % This seems redundant
 %%
 %As explained in \Cref{space-bound}, the space required to represent the label
-%bit vector in \system depends on the entropy of the color class distribution.
+%bit vector in \rainbowfish depends on the entropy of the color class distribution.
 %For a uniformly-random distribution the space would be high compared to a skewed
 %distribution. The boundary bit vector contains the same number of bits as the
 %label bit vector.
@@ -463,10 +463,10 @@ which, ignoring the
 additive term $\order{\log_2{M}}$, is greater or equal to $N\log_2{M} - 0.44M$. Given the range of
 $M$ (i.e., $1 \leq M \leq N$), $N\log_2{M}$ always dominates the lower bound.
 
-Now, we show that the space needed by \system to store the variable-length
+Now, we show that the space needed by \rainbowfish to store the variable-length
 labels assigned to color classes is equal to the lower bound. As explained in
 \Cref{label-size-bound}, the upper bound to store any label is $\log_2{M}$ bits,
-and for $N$ edges, it is given by $N\log_2{M}$ bits.  \system also stores a
+and for $N$ edges, it is given by $N\log_2{M}$ bits.  \rainbowfish also stores a
 boundary bit vector which has the same number of bits as the label bit vector.
 Therefore, the space required to store the label mappings is strictly $\leq
 2N\log_2{M}$. Note that the extra overhead to store the metadata to perform a
@@ -474,13 +474,13 @@ select operation in constant time on the boundary bit vector is bounded by
 $o(N)$, where $N$ is the numbers of bits in the bit
 vector~\cite{GonzalezGrMa05}.
 
-However, \system's representation of color classes is entropy compressed (see
+However, \rainbowfish's representation of color classes is entropy compressed (see
 \Cref{design}) and the space required depends on the entropy of the color class
 distribution. For a highly skewed distribution, the entropy is low and the space
 required to store labels is much smaller than $N\log_2{M}$ bits. On the other
-hand, when the distribution is near-uniform, i.e., the entropy is high, \system
+hand, when the distribution is near-uniform, i.e., the entropy is high, \rainbowfish
 makes all labels to be $\log_2{M}$ bits and dispenses with BBV. Therefore, the
-space required by \system is always smaller than or equal to the lower bound.
+space required by \rainbowfish is always smaller than or equal to the lower bound.
 
 %\fatemeh{Here we are proving ds <= O(Z) while for succinct we should prove ds
 %= Z + o(Z). The first is the proof for compact. So one idea we discussed with
@@ -518,7 +518,7 @@ space required by \system is always smaller than or equal to the lower bound.
     \end{axis}
 \end{tikzpicture}
     \caption{
-    Distribution of \kmer frequencies across equivalence class labels in \system
+    Distribution of \kmer frequencies across equivalence class labels in \rainbowfish
     after $1$-pass and $2$-pass algorithm on plant dataset
     \Cref{tab:datasets-info}. The $2$-pass algorithm assigns the smallest label
     to color class with maximum number of \kmers. The distribution in $2$-pass
@@ -527,11 +527,11 @@ space required by \system is always smaller than or equal to the lower bound.
       \label{fig:plant-eq-class-dist}
 \end{figure}
 
-\subparagraph{Considerations due to the underlying \dbg representation} We recall here that we make use of the BOSS representation of the underlying \dbg topology. To build the BOSS representation, \kmer counting is first performed using KMC2~\cite{Deorowicz15KMC}, canonicalizing \kmers during counting. Though the BOSS representation inserts both forward and reverse complement \kmers into the graph, it associates only a single color vector with this pair.  Moreover, BOSS creates ``dummy'' edges (real \kmers prepended or appended with \$) to allow encoding \kmers that appear near terminal nodes in the \dbg. In the \cdbg these dummy edges are assigned the empty color set. All of this information is encoded by both \vari and \system. However, as we discuss in more detail in~\Cref{sec:conclusion}, the \system representation can work with any \dbg representation that can assign distinct ranks to each \kmer in the \dbg. Thus, we would expect this encoding scheme to work well with, e.g., a \dbg representation based on minimum perfect hashing of the
+\subparagraph{Considerations due to the underlying \dbg representation} We recall here that we make use of the BOSS representation of the underlying \dbg topology. To build the BOSS representation, \kmer counting is first performed using KMC2~\cite{Deorowicz15KMC}, canonicalizing \kmers during counting. Though the BOSS representation inserts both forward and reverse complement \kmers into the graph, it associates only a single color vector with this pair.  Moreover, BOSS creates ``dummy'' edges (real \kmers prepended or appended with \$) to allow encoding \kmers that appear near terminal nodes in the \dbg. In the \cdbg these dummy edges are assigned the empty color set. All of this information is encoded by both \vari and \rainbowfish. However, as we discuss in more detail in~\Cref{sec:conclusion}, the \rainbowfish representation can work with any \dbg representation that can assign distinct ranks to each \kmer in the \dbg. Thus, we would expect this encoding scheme to work well with, e.g., a \dbg representation based on minimum perfect hashing of the
 \kmers~\cite{drezen2014gatb}.
 %\fatemeh{We should note that as BOSS counts a \kmer and its reverse complement as two distinct \kmers, we also count them as two different \kmers.}
 
-\subparagraph{Storing bit vectors.} In \system, we use bit vector implementations
+\subparagraph{Storing bit vectors.} In \rainbowfish, we use bit vector implementations
 from the SDSL library~\cite{sdsl} to store the three bit vectors from
 \Cref{fig:cdbg-rep}. We use the $rrr\_vector$ implementation from SDSL to store
 the equivalence class table and boundary bit vector, and the $bit\_vector$ implementation
@@ -574,7 +574,7 @@ the actual value of a label, we first recover the stored label $l'$ from the lab
 bit vector and then calculate the actual label $l$ using the equation $l = l'
 + 2^{d}-2$ where d is length of label $l$ in bits.
 
-As explained in \Cref{system-space-bound}, the $2$-pass algorithm minimizes the
+As explained in \Cref{rainbowfish-space-bound}, the $2$-pass algorithm minimizes the
 space used to represent color class labels by sorting the classes based on their
 frequencies and assigning labels to color classes to minimize the length of the
 resulting code path, similar to Huffman coding. However, one could also imagine
@@ -587,7 +587,7 @@ end up assigning long labels to frequent \kmers, and hence produce poor (i.e.,
 large) encodings. However, the $2$-pass algorithm always assigns labels
 according to the corresponding frequency distribution of the color classes.
 Sometimes, the $1$-pass algorithm does well, but we chose to adopt the $2$-pass algorithm
-in \system. 
+in \rainbowfish. 
 
 \section{~Evaluation}
 
@@ -626,7 +626,7 @@ in \system.
 \hline
 Datasets & \multicolumn{2}{c|}{Construction Time (secs)} & \multicolumn{2}{c|}{Bubble Calling Time (secs)} \\
 \cline{2-5}
-& \vari & \system & \vari & \system \\
+& \vari & \rainbowfish & \vari & \rainbowfish \\
 \hline
 \ecoli 10 & 44 & 31 & 344 & 366\\
 \ecoli 1000 & 340 & 270 & 2,610 & 2,356\\
@@ -638,7 +638,7 @@ Human transcriptome & 13,961 & 30,804 & NA & NA\\
 \hline
 \end{tabular}
 \caption{
-  Construction and bubble calling time for \system and \vari for different
+  Construction and bubble calling time for \rainbowfish and \vari for different
   datasets. 
 }
 \vspace{-2.5em}
@@ -646,14 +646,14 @@ Human transcriptome & 13,961 & 30,804 & NA & NA\\
 \end{center}
 \end{table}
 
-In this section we evaluate \system, and compare it to \vari~\cite{Muggli17}, a
-state-of-the-art \cdbg representation. We evaluate both systems in terms of
+In this section we evaluate \rainbowfish, and compare it to \vari~\cite{Muggli17}, a
+state-of-the-art \cdbg representation. We evaluate both rainbowfishs in terms of
 space and running time. We address the following questions about the performance
-of \system: How does \system compare to \vari in terms of the space required to
-represent color information?; How does \system compare to \vari in terms of the
-construction time?; How does \system compare to \vari in terms of typical
+of \rainbowfish: How does \rainbowfish compare to \vari in terms of the space required to
+represent color information?; How does \rainbowfish compare to \vari in terms of the
+construction time?; How does \rainbowfish compare to \vari in terms of typical
 queries (e.g., in bubble calling)? We are particularly concerned with ensuring
-that \system produces small encodings of the color information and remains
+that \rainbowfish produces small encodings of the color information and remains
 practically efficient to query.
 
 \subsection{~Experimental setup}
@@ -679,18 +679,18 @@ label and boundary vectors and then save all three structures to file. As with
 most succinct representations, the space required for our data structure in
 memory and on disk is almost the same (as the two-pass algorithm allows us to
 allocate only the space we need for our final representation). The construction
-time recorded here does not include (for either \system or \vari) the time taken
+time recorded here does not include (for either \rainbowfish or \vari) the time taken
 to build the \dbg and color list corresponding to edges in the \dbg (since this
 is the same for both methods).
 
-We also report the space needed by both \system and \vari to store the color class
+We also report the space needed by both \rainbowfish and \vari to store the color class
 representation on disk. We do not include the space needed to represent the
-actual \dbg in our space comparisons because both \system and \vari use \boss
+actual \dbg in our space comparisons because both \rainbowfish and \vari use \boss
 to store the actual \dbg, and the \boss representation itself tends to take less
 space than the color information.
 
 Second, we evaluate the time taken to perform the bubble calling benchmark as
-described in~\cite{MuggliBoNo17}, using both the \vari and \system
+described in~\cite{MuggliBoNo17}, using both the \vari and \rainbowfish
 representations. Finding bubbles in a \cdbg enables one to detect regions in the
 \dbg where different samples (i.e., colors) diverge from each other. As
 originally suggested by Iqbal et al.~\cite{Iqbal2012Novo}, such algorithms can
@@ -698,7 +698,7 @@ form the basis for analyzing certain types of genetic variants in populations of
 genomes. We note that we adopt the exact bubble calling algorithm implemented in
 \vari, and the only variable being altered in our bubble-calling benchmark is
 the data structure being used to determine the set of colors present for each
-\kmer. Since \vari and \system are both built upon the \boss representation,
+\kmer. Since \vari and \rainbowfish are both built upon the \boss representation,
 which is based on the edge-centric view of \dbg, they consider \kmers as edges
 in the \dbg, meaning that each edge is associated with a \kmer, and its
 corresponding rank and color set. Briefly, the bubble calling algorithm takes as
@@ -716,7 +716,7 @@ wall-clock time using the \texttt{/usr/bin/time} executable. All experiments
 were performed on an Intel(R) Xeon(R) CPU (E5-2699 v4 @2.20GHz with 44 cores and
 56MB L3 cache) with 512GB RAM and a 4TB TOSHIBA MG03ACA4 ATA HDD running ubuntu
 16.10, and were carried out using a single thread. We note that, while the
-construction of the color set representation in \system (and \vari) are serial
+construction of the color set representation in \rainbowfish (and \vari) are serial
 operations, queries are trivially parallelizable, as each label can be queried
 and decoded independently.
 
@@ -739,7 +739,7 @@ different strains of the same species, they exhibit a small degree of
 heterogeneity. In other words, a large fraction of the union \dbg is expected
 to occur in all samples.
 
-To evaluate the scalability of \system when primarily changing the underlying
+To evaluate the scalability of \rainbowfish when primarily changing the underlying
 number of input colors, we have evaluated three variants of the \ecoli dataset.
 These consist of a dataset containing only 10 different strains, another
 containing 1,000 different strains and the final containing all 5,598 strains.
@@ -749,12 +749,12 @@ dataset to evaluate the space usage for higher \kmer sizes.
 
 %All these experiments are conducted on set of \kmers derived from
 %the data with $k=32$. In addition to that, to evaluate the effect of k in for
-%\kmers in the space required by \system we ran it \kmers with $k=63$ from
+%\kmers in the space required by \rainbowfish we ran it \kmers with $k=63$ from
 %\ecoli 1000.
 
 %Using all \ecoli assembly samples we will have \kmers from 5,598 different
 %colors. To evaluate the effect of varying number of colors on storage and
-%performance of \system, we design three different experiments on \ecoli data
+%performance of \rainbowfish, we design three different experiments on \ecoli data
 %running all steps of the process on the first 10, 1000, and then all 5,589
 %\ecoli samples. 
 The second dataset (i.e., \plant) consists of the genome assemblies of four
@@ -773,7 +773,7 @@ calling benchmark. Further, Muggli et al.~\cite{MuggliBoNo17} found that this
 was the only of the three original datasets on which they were able to construct
 the original \texttt{Cortex} representation of the \cdbg. They validated
 \texttt{Cortex} produces the same bubble calls as \vari ~\cite{MuggliBoNo17}
-(which, of course, produces the same bubble calls as \system).
+(which, of course, produces the same bubble calls as \rainbowfish).
 %
 For more detailed analysis of \texttt{Cortex}'s construction and processing time
 and space on this dataset, please refer to~\cite{MuggliBoNo17}.
@@ -795,7 +795,7 @@ degree of heterogeneity and an intermediate number of input colors (87).
 %
 %is a doubly huge dataset with total amount of 97,096,576,010 \kmers and
 %considerable number of colors (87) and heterogeneity which provides a good
-%practical example to evaluate time and space of \system compared to
+%practical example to evaluate time and space of \rainbowfish compared to
 %state-of-the-art colored \dBGs, \vari. 
 %
 
@@ -809,7 +809,7 @@ Hence, this dataset will give an idea about how the representations
 will perform when the number of colors becomes very large (though the number of
 distinct color classes remains orders of magnitude smaller than the number of
 \kmers). Further, we note that this dataset highlights some of the similarities
-between the color class encoding adopted by \system and the \kmer-based
+between the color class encoding adopted by \rainbowfish and the \kmer-based
 equivalence class decomposition adopted by certain transcript quantification
 methods (e.g.~\cite{PatroSailfish:2014}).
 
@@ -828,31 +828,31 @@ methods (e.g.~\cite{PatroSailfish:2014}).
 
 \subsection{~Performance}
 
-\Cref{tab:time} shows the time taken by \system and \vari to construct the color
-class representation for different datasets. \system uses a $2$-pass algorithm
+\Cref{tab:time} shows the time taken by \rainbowfish and \vari to construct the color
+class representation for different datasets. \rainbowfish uses a $2$-pass algorithm
 to construct the color class representation, and hence the construction time is
 dominated by the steps to read the color list file twice. For small datasets
 like \ecoli $10$ and \ecoli $1,000$, the input file size is small and does not affect
 the overall construction time compared to \vari. However, for large datasets
 like \plant and \beefsafety, the time to read the color file twice dominates the
-construction time and \system is $1.9\times$---$3\times$ slower. We note that
+construction time and \rainbowfish is $1.9\times$---$3\times$ slower. We note that
 this time can be considerably reduced by avoiding the uncompressed color matrix
-representation currently used upstream of \system and \vari, and integrating
+representation currently used upstream of \rainbowfish and \vari, and integrating
 determination and encoding of the color classes into the \dbg construction
 directly. However, this is outside the scope of the current paper.
 
-\paragraph*{~Space}\Cref{tab:space} shows the space usage of \system and \vari
+\paragraph*{~Space}\Cref{tab:space} shows the space usage of \rainbowfish and \vari
 for the different datasets we consider. Among these data, there are a range of
 characteristics in terms of the number of \kmers, the number of colors, and the
 complexity and heterogeneity of the \dbg. We find that, for all datasets,
-\system requires less space to store the color information than \vari.  The
+\rainbowfish requires less space to store the color information than \vari.  The
 magnitude of the improvement depends on the number of distinct equivalence
 classes and their distribution, but is as large as $\sim 20\times$.  We see the
 same trend with higher values of \kmer sizes.
 
 %\fatemeh{Even changing $k$ to higher value doesn't change the trend.}
 
-In particular, \system's space usage is particularly impressive for datasets
+In particular, \rainbowfish's space usage is particularly impressive for datasets
 with a large number of input colors but a relatively small number of distinct
 \kmers. In this case, we usually find that the number of distinct color classes
 is very small compared to the universe of possibilities, and so each label can
@@ -866,12 +866,12 @@ matrix has an entropy of $\sim 0.0004$ (compared to \ecoli 5,598 and \ecoli
 1,000 with entropies of $\sim 0.16$ and $\sim 0.34$ respectively). Thus, in the
 \ecoli dataset, \vari can save space up to a factor of $\sim 5$ compared with
 the uncompressed representation, while in the Human transcriptome it can save a
-factor of $\sim 2,150$ because of the low entropy of the color matrix. \system
+factor of $\sim 2,150$ because of the low entropy of the color matrix. \rainbowfish
 does well in all experiments, even when the number of input colors is small
-(e.g., in the \plant dataset). \system achieves the most impressive compression
+(e.g., in the \plant dataset). \rainbowfish achieves the most impressive compression
 when the color class distribution has low entropy and the number of color classes
 is small relative to the upper bound.
-In such cases, the entropy compressed representation of \system is able to
+In such cases, the entropy compressed representation of \rainbowfish is able to
 represent a large fraction of all labels using a very small number of bits.
 %\fatemeh{
 %while because of high entropy in color matrix, \vari's space increases as a result of negative compression. 
@@ -883,7 +883,7 @@ represent a large fraction of all labels using a very small number of bits.
 \begin{tabular} {| l | c c c|}
 \hline
 Datasets & 
-uncompressed color matrix & \vari & \system \\
+uncompressed color matrix & \vari & \rainbowfish \\
 \hline
 \ecoli 10 & 34 & 58 & 20 \\
 \ecoli 1000 & 18,804 & 8,848 & 475 \\
@@ -895,7 +895,7 @@ Human transcriptome & 1,808,435 & 841 & 817 \\
 \hline
 \end{tabular}
 \caption{
-  The space required by \system and \vari to store the color class
+  The space required by \rainbowfish and \vari to store the color class
   representation for different datasets. The first column shows space required for the uncompressed color matrix ($N \times C$ bits).
   All space is reported in MB. $k = 32$ unless otherwise specified.
 }
@@ -909,20 +909,20 @@ Human transcriptome & 1,808,435 & 841 & 817 \\
 %as well as \vari in case of 10 samples of \ecoli as a small dataset with few
 %colors and do much better regarding space in case of considering all 5,598
 %samples. table \ref{tb:space} shows changes of storage while changing number
-%of colors. As shown in table \cref{tb:space} \system improves space when
+%of colors. As shown in table \cref{tb:space} \rainbowfish improves space when
 %number of colors increase from taking 16 times less space in \ecoli with 1000
 %samples to 26 times in full \ecoli dataset compared to \vari. 
 
 %Another interesting result is the huge amount of space improvement we see in
-%\plant dataset although it has just four colors which implies that \system not
+%\plant dataset although it has just four colors which implies that \rainbowfish not
 %only works better in terms of increasing number of colors but also when we have
 %a huge amount of \kmers. While in \vari, they keep four bits per each \kmer in
 %\plant dataset (one bit for each color and hence four bits for four colors),
 %but still replacing that with two bits for the first two most frequent color
-%sets in \system can still save a lot of space when we have a considerable
+%sets in \rainbowfish can still save a lot of space when we have a considerable
 %amount of \kmers even with the overload of saving equivalence table.
 
-\paragraph*{~Bubble calling} \Cref{tab:time} shows the time taken by \system and \vari to perform the bubble
+\paragraph*{~Bubble calling} \Cref{tab:time} shows the time taken by \rainbowfish and \vari to perform the bubble
 calling benchmark on different datasets. We run the bubble calling benchmark on
 the \ecoli and \plant datasets (as in the \vari paper). We note that the current
 bubble calling algorithm is too slow to run on the Beef safety data set (the
@@ -937,7 +937,7 @@ colors, or both) datasets (on order of Terabytes), we exhausted the available
 disk space. For these datasets, to approximate the relevant sizes and
 construction times, we produced a uncompressed color matrix that lists the
 colors for each \kmer and its reverse complement, and we use this to build both
-the \vari and \system color representations. While very similar to the full color
+the \vari and \rainbowfish color representations. While very similar to the full color
 matrix that \vari would produce, this file is slightly different in that it does
 not include entries for dummy edges (a detail of the \boss representation), and
 the order of the color matrix rows can be different from what will appear in the
@@ -948,7 +948,7 @@ methods would perform were we able to construct the \dbg completely.
 For bubble calling, both representations require a very similar amount of time.
 This is likely due, in part, to the fact that navigating the \boss
 representation of the \dbg may be the performance bottleneck in the bubble
-calling algorithm. Thus, both \vari and \system provide sufficiently fast access
+calling algorithm. Thus, both \vari and \rainbowfish provide sufficiently fast access
 to the color sets for each edge that they do not represent bottlenecks in this
 regard.
 
@@ -960,15 +960,15 @@ store the color information of a \cdbg. To represent the topology of the \dbg
 itself, we adopt the \boss~\cite{BoweOn12} representation. However, we note
 that, for our representation of the color sets, we only require that the
 underlying \dbg representation is able to associate a unique rank between $0$
-and $N-1$ with each edge. Hence, it is possible to use the \system
+and $N-1$ with each edge. Hence, it is possible to use the \rainbowfish
 representation with other representations of the \dbg topology (e.g., those
 based on minimal perfect hashing).
 
 We demonstrate that the inherent skewness in the distribution of color classes
 can be exploited to reduce the size of the color information. This allows
-\system to represent the \cdbg, even for large datasets with many colors, in a
+\rainbowfish to represent the \cdbg, even for large datasets with many colors, in a
 reasonably small space. In fact, for representing the color information itself,
-we show that \system is succinct, and hence requires only $Z + o(z)$ bits where
+we show that \rainbowfish is succinct, and hence requires only $Z + o(z)$ bits where
 $Z$ is the number of bits required by an information-theoretically optimal
 representation.
 %
@@ -995,7 +995,7 @@ e.g., storing the shared prefixes of membership vectors only once.
 %by re-ordering the \kmers to somehow have similar labels next to each other to
 %enable more compression.}
 
-While we have described here a system for efficiently representing the color
+While we have described here a rainbowfish for efficiently representing the color
 information in a \cdbg, our encoding scheme can be generalized to store any type
 of attribute attached to the edges. For example, one could use the same (or a
 related) scheme to encode information like the \kmer count or set of positions
@@ -1008,21 +1008,21 @@ coherence in annotation (i.e., color or count information) shared among the
 constiuent \kmers of a contig, allowing one to store only the information where
 these annotations change during traversal.
 
-Finally, in our current implementation, the input to the system is a color
+Finally, in our current implementation, the input to the rainbowfish is a color
 matrix file generated by \vari. This implementation requires first building the
 uncompressed color matrix, and then permuting the rows of this matrix along with
 the edges of the \dbg during the \boss construction procedure. 
 %
 %
 %\fatemeh{Since
-%\system is dependent on color matrix as input, the building process } 
+%\rainbowfish is dependent on color matrix as input, the building process } 
 %
 This process can require a large amount of space, as the uncompressed color
 matrix can become extremely large (on the order of Terabytes for some of the
 datasets we considered here). Consequently, in most cases, the construction
 algorithm must resort to making extensive use of external memory (i.e., disk),
 which increases building time and consumes a large amount of disk space.
-However, we note that the \system representation can be built without direct
+However, we note that the \rainbowfish representation can be built without direct
 access to the uncompressed color matrix.
 
 Specifically, the current \vari algorithm uses a mergesort-like approach to
@@ -1031,7 +1031,7 @@ sorted lexicographically (independently), and the rows of the color matrix are
 constructed one by one by asking for each \kmer, in lexicographic order, which
 samples contain it. The working memory of this approach is very small compared
 to the size of the full color matrix itself. One could imagine using the same
-merge-based scheme to construct the \system representation directly. In the
+merge-based scheme to construct the \rainbowfish representation directly. In the
 first pass, the distinct color classes and a counter for each would be stored,
 resulting in a small, sparse hash table rather than a large, uncompressed color
 matrix. In the second pass, one would simply associate the relevant
@@ -1040,7 +1040,7 @@ vastly reduce the time and space required to construct the \cdbg.
 
 %\fatemeh{In this
 %way, we don't need the whole color matrix as an input to the construction
-%process. Yet, we can build all the data structures in \system by just going over
+%process. Yet, we can build all the data structures in \rainbowfish by just going over
 %\kmer count files. In the first pass, we go over all \kmer files and build ECT
 %with keeping the count of \kmers in each color equivalence class. In second
 %pass, having total number of bits required to build LBT and BBV, we go over
@@ -1050,14 +1050,14 @@ vastly reduce the time and space required to construct the \cdbg.
 %we are going over the same number of \kmers as the rows of color matrix in each
 %pass.} 
 
-Thus, in the future, we are interested in both incorporating the \system
+Thus, in the future, we are interested in both incorporating the \rainbowfish
 representation more tightly inside the existing \vari codebase, as well as
-pairing the \system representation with other compatible representations of the
+pairing the \rainbowfish representation with other compatible representations of the
 \dbg topology.  
 
 %\fatemeh{One of these representations is compacted \dbg in which
   %a \kmer and its reverse complement are represented with one id. This can help
-  %improve the space \system takes by decreasing number of \kmers we have to
+  %improve the space \rainbowfish takes by decreasing number of \kmers we have to
   %provide colorset for almost to half of number of unique \kmers calculated by
 %\boss.}
 

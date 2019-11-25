@@ -191,7 +191,7 @@ the space required for the structure storing the color information. We
 propose a compact representation that, given a color ID, can return the
 corresponding color efficiently. Although we pair our color table representation
 with the \dbg structure representation of the \cqf~\cite{PandeyBeJo17a} as used
-in \prevsys~\cite{mantis}, our proposed color table
+in \mantis~\cite{mantis}, our proposed color table
 representation can be paired with other \dbg representations.
 
 \subsection{A similarity-based \cdbg representation}
@@ -417,7 +417,7 @@ final pass to determine the relevant delta lists and encode our final \mst
 structure.
 
 \ourparagraph{Parallelization.}  We note that, after having
-constructed the \prevsys representation, most phases of the MST
+constructed the \mantis representation, most phases of the MST
 construction algorithm are trivially parallelized.  MST construction
 decomposes into three phases: (1) color-class graph construction, (2)
 MST computation, and (3) color-class representation generation.
@@ -516,7 +516,7 @@ We evaluate our MST-based representation on the following parameters:
 \begin{itemize}
     \item \textbf{Scalability.} How does our MST-based color-class representation
     scale in terms of space with increasing number of input samples, and how does
-    it compare to the existing representations of \prevsys?
+    it compare to the existing representations of \mantis?
 
     \item \textbf{Construction time.} How long does it take --- in addition to
     the original construction time for building \cdbg --- to build
@@ -547,7 +547,7 @@ and disk requirements for the two steps of preprocessing and
 index building as was done by~\citet{mantis}.
 
 For index building and query benchmarks, we ran all the experiments on
-the same system used in \prevsys~\citep{mantis}, an
+the same system used in \mantis~\citep{mantis}, an
 Intel(R) Xeon(R) CPU (E5-2699 v4 @2.20GHz with 44 cores and 56MB L3 cache) with
 512GB RAM and a 4TB TOSHIBA MG03ACA4 ATA HDD running Ubuntu 16.10 (Linux kernel
 4.8.0-59-generic).  Constructing the main index was done using a single thread,
@@ -555,7 +555,7 @@ and the MST construction was performed using $16$ threads.  Query benchmarks
 were also performed using a single thread.
 
 % Explaining the 10,000 experiments
-\ourparagraph{Data to evaluate scalability and comparison to \prevsys}
+\ourparagraph{Data to evaluate scalability and comparison to \mantis}
 
 We integrated and evaluated our MST-based color-class representation
 within Mantis, so we briefly review Mantis here. Mantis builds an index on a
@@ -598,7 +598,7 @@ gzipped FASTQ format. Additionally, we have built the proposed index for
 $2,586$ sequencing samples from human blood, brain, and breast tissues (\bbb)
 originally used by~\cite{Solomon2016Fast} and also used in the subsequent
 work~\citep{Solomon2017Improved,Sun2017Allsome,seqothello}, including
-\prevsys~\citep{mantis}, as a point of comparison with these representations.
+\mantis~\citep{mantis}, as a point of comparison with these representations.
 The set of $10,000$ experiments does not overlap with the \bbb samples.
 The full list of $10,000$ experimental identifiers can be obtained from
 \url{https://github.com/COMBINE-lab/color-mst/blob/master/input_lists/nobbb10k_shuffled.lst}.
@@ -695,7 +695,7 @@ proportional to $\Theta(\log(\text{\# of samples}))$ (i.e., every time
 we double the number of samples, the average edge weight increases by
 almost exactly 1). This suggests that our \dbg-based algorithm
 is able to find pairs of similar color classes. The time column shows the time
-required to build the \mst representation (which is in addition to the \prevsys
+required to build the \mst representation (which is in addition to the \mantis
 construction time required to produce the input to the \mst compression
 algorithm).
 
@@ -715,7 +715,7 @@ Finally, the last two rows in \Cref{tab:growthrate} show the size of the RRR- an
 color-class representations for the human blood, brain, breast (\bbb) and \textit{E. coli} data sets respectively.
 \bbb is the data set used in \sbt and
 its subsequent tools~\citep{Solomon2017Improved,Sun2017Allsome,seqothello},
-as well as in \prevsys~\citep{mantis}
+as well as in \mantis~\citep{mantis}
 and \textit{E. coli} is the data set analyzed in the Rainbowfish paper.
 This dataset, which has been obtained from
 GenBank~\cite{o2015reference}, consists of $5,598$ distinct \emph{E. coli}
@@ -799,7 +799,7 @@ color data in addition to RNA-seq color data.
         %\hline
     \end{tabular}
     \vspace{0.1in}
-    \caption{The memory required for \prevsys build and \mst compression phases on
+    \caption{The memory required for \mantis build and \mst compression phases on
     human RNA-seq data. The overall memory required to construct the full index
     is the max of the two columns which, for these datasets, is always the \mst memory.}
     \label{tab:memory}
@@ -819,9 +819,9 @@ representation. All builds used 16 threads.
 sample dataset scales as a function of the number of build threads. The memory
 consumption is not affected by number of threads and remains fixed for all
 trials.
-The memory usage for both the main \prevsys build and the \mst
+The memory usage for both the main \mantis build and the \mst
 construction steps is shown in \Cref{tab:memory}. Since these phases are run
-independently, and since the \mst phase follows the \prevsys construction phase, the
+independently, and since the \mst phase follows the \mantis construction phase, the
 peak memory for the whole build pipeline is the maximum of the memory required
 for each of the two construction phases.
 
@@ -863,7 +863,7 @@ is $111G$.
     \centering
     \begin{tabular}{l@{\hskip 0.2in}|c@{\hskip 0.2in}c@{\hskip 0.2in}c|c@{\hskip 0.2in}c@{\hskip 0.2in}c}
         \hline
-        & \multicolumn{3}{c}{\system} & \multicolumn{3}{c}{\prevsys} \\
+        & \multicolumn{3}{c}{\mantis} & \multicolumn{3}{c}{\mantis} \\
         \hline
         \hline
         & index load $+$ query & query & space & index load $+$ query & query & space \\
@@ -937,7 +937,7 @@ while maintaining a lossless representation, this is an interesting theoretical
 question. It may be fruitful to approach this question from the perspective suggested
 by~\citet{yu2015entropy}, of evaluating the metric entropy, fractal
 dimension, and information-theoretic entropy of the space of \ccs. Practically, however,
-we have observed that, at least in our current system, \prevsys, for large-scale
+we have observed that, at least in our current system, \mantis, for large-scale
 sequence search, the \cqf, which is used to store the topology of the \dbg and
 to associate \cc labels with each \kmer, has become the new scalability
 bottleneck. Here, it may be possible to reduce the space required by this
@@ -952,6 +952,6 @@ underlying \dbg. Nonetheless, because we have designed our \cc representation as
 essentially orthogonal to the \dbg representation, we anticipate that we can
 easily integrate this approach with improved representations of the \dbg.
 
-\prevsys with the new \mst-based \cc encoding is written in
+\mantis with the new \mst-based \cc encoding is written in
 \texttt{C++17} and is available at
 \url{https://github.com/splatlab/mantis}.

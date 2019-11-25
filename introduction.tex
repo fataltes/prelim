@@ -223,9 +223,9 @@ a simple space- and time-efficient index for searching sequences in large
 collections of experiments which is based on \cdbgs.
 The ``color'' associated with each \kmer
 in a \cdbg is the set of experiments in which that \kmer occurs. We
-use an exact CQF~\cite{}, an AMQ filter~\cite{} to store a table mapping each \kmer to a color ID,
+use an exact \cqf~\cite{PandeyBeJo17a}, an AMQ filter~\cite{} to store a table mapping each \kmer to a color ID,
 and another table mapping color IDs to the actual set of experiments
-containing that \kmer and achieve ... percent better memory,
+containing that \kmer and achieve ... times better memory,
 ... and up to $109X$ improvement in query time compared to the previous representations.
 
 \section{Reference-based and Reference-free Indexing}
