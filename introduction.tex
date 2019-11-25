@@ -265,8 +265,33 @@ We present two variants of the pufferfish data structure, dense and sparse.
 The first is optimized for fast queries
 and the second provides the user with the ability to trade off space for speed in a fine-grained manner.
 
-\section{What I will propose as my thesis}
-To finish up completing the path of efficient indexing and use of it in the subsequent applications ..
+\section{What I will propose as my thesis?}
+My future thesis plan lies in two different but related directions
+as the continuation of my previous projects that I will work on in parallel.
+One of the main usecases of Pufferfish as an index with small memory
+and efficient factorization of repeats of sequences is in indexing thousands of genomes
+in the metagenomic analyses. In chapter~\ref{chap:pufferfish}, we even investigate
+the idea by building an index over thousands of E. coli genomes.
+One can now use it for metagenomic abundance estimation which is one of the projects
+I propose to work on as a great showcase for Pufferfish and its usefulness.
+One of the main challenges in metagenomic abundance estimation is the large number of false positives
+in reporting the abundance for species because of the high similarity of sequences.
+I propose Cedar, a metagenomic abundance estimation on top of the Pufferfish index.
+Having worked with different types of sequences in the past four years,
+I have a good perspective about different types of gene and transcript sequences.
+Therefore, I intend to use some data driven heuristics and useful algorithms to
+improve the expression accuracies in metagenomics analyses.
+
+In parallel to that, I want to expand Mantis, the sequence search scheme we developed,
+to larger collection of datasets as well as making it dynamically updatable.
+In our final manuscript, we show how we can build Mantis over 10,000 raw sequence samples.
+However, only the total publicly available human sequence samples is an order of magnitude larger
+than this number. Therefore, I, along with other members of the Mantis team,
+intend to work on improving the scalability of Mantis
+by exploring ideas for a better representation for \kmer mapping, skipping the
+large intermediate color bitvectors by directly merging two smaller mantis MSTs into a larger one,
+and finally giving up the exactness of the index in a non-biased and controllable fashion.
+
 
 \paragraph*{Going over the chapters}
 In the next chapter, chapter ~\ref{chap:rainbowfish}, I will explain in details the new color representation we
