@@ -83,7 +83,7 @@ low abundance sequences or taxa are usually discarded from the quantification re
 One solution proposed to avoid reporting a large number of false positive genomes as present
 is having a post-filtering step
 to discard references with abundances smaller than a predefined cutoff value
-or discard all the multi-mapped reads~\cite{bracken,karp}.
+or discard all the multi-mapped reads~\cite{lu2017bracken,reppell2018using}.
 This post-filtering results in losing the reads that were mapped to those discarded references.
 However, we believe if we keep these reads and distribute them among the remaining references,
 this can help better estimate the counts of the remaining references
@@ -143,7 +143,7 @@ we go over the following four steps of thresholding:
 \end{enumerate}
 
 Finally, we plan to compare Cedar to the state-of-the-art metagenomic abundance estimation tools
-such as Bracken~\cite{} and Karp~\cite{}.
+such as Bracken~\cite{lu2017bracken} and Karp~\cite{reppell2018using}.
 
 
 \chapter{Timeline}
