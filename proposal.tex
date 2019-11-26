@@ -39,29 +39,22 @@ and which is also able to grow dynamically at the resolution of individual exper
 
 \section{Cedar, A Fast High Accuracy Tool for Metagenomic Abundance Estimation}
 One of the main challenges in metagenomic abundance estimation is the large number of
-false positives, resulting in reporting abundances for lots of species
-which are not present in the sequenced sample.
-Generally, metagenomic tools rely on a post-filtering step for filtering out low abundance taxa
-to reduce false positives, an approach which discards lots of reads
-assigned to low abundance species.
-I along with my teammate Mohsen propose Cedar,
+false positives, resulting in reporting abundance values for species
+which are not even present in the sequenced sample.
+I along with my teammate Mohsen propose ``Cedar'',
 a complete pipeline from aligning metagenomic reads to estimating abundances at each taxonomic level
 which is sometimes also called profiling.
-Cedar relies on an Expectation-Maximization algorithm (EM) for estimating abundances
-and avoids reporting false positives by an iterative filtering step during the EM procedure.
-We plan to compare Cedar in the abundance estimates and detection of false positives
-to the state-of-the-art metagenomic abundance estimation tools such as Bracken~\cite{} and Karp~\cite{}.
-
-The proposing pipeline follows the same order as many previous microbiome profiling tools~\cite{},
+The proposal follows the same pipeline as many previous microbiome profiling tools~\cite{},
 dividing the task of profiling into two independent sections of alignment and abundance estimation.
-We use Puffalign for the first step and Cedar for the second part
-both of which can be used in other sequence analyzing pipelines in combination with other tools.
+We use Puffalign, our recently developed time and space efficient alignment tool
+based on the \pufferfish index for the first step and Cedar for the second part.
+I should note that both of these tools can be used in other sequence analyzing pipelines
+in combination with other tools.
 
 In many metagenomic quantification tasks,
 considering the depth of the high throughput sequencing techniques
 and high amount of sequence identity across genomes,
-low abundant sequences or taxa at a specific level (e.g. species)
-are usually discarded from the quantification results.
+low abundant sequences or taxa are usually discarded from the quantification results.
 One solution proposed to avoid reporting a lot of false positive genomes as abundant
 is having a post-filtering step
 to discard references with abundances smaller than a predefined cutoff value
@@ -80,13 +73,15 @@ based on the following common knowledge bases:
     among the set of references for a multi-mapped read.
     \item In high throughput sequencing, there is a very low probability for having low abundant references.
 \end{enumerate}
-The last item, is the reason behind many post-processing filtering in the analyses for microbiome profiling
-and quantification.
-However, considering the rest of the facts, keeping the reads and
+
+Considering the above facts, keeping the reads and
 distributing them among the remaining references
 can help to make the final count distribution more skewed and closer to the truth
-as we are using the information coming from more reads.
+as we are using the information coming from more reads
+which is the main motivation for developing ``Cedar''.
 
+Cedar relies on an Expectation-Maximization algorithm (EM) for estimating abundances
+and avoids reporting false positives by an iterative filtering step during the EM procedure.
 Iterative thresholding is the solution we propose tackling the problem of
 ``reference sparsifying without the loss of reads''.
 Through out the EM process, at the beginning of each iteration,
@@ -123,6 +118,8 @@ we go over the following four steps of thresholding:
     and the weights of the references for the next iterations of EM.
 \end{enumerate}
 
+Finally, we plan to compare Cedar to the state-of-the-art metagenomic abundance estimation tools
+such as Bracken~\cite{} and Karp~\cite{}.
 
 
 \section{Timeline}
