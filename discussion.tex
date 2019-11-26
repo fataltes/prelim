@@ -1,5 +1,6 @@
 \chapter{Conclusion}
 
+In this document, we’ve addressed the problem of reference-free and -based indexing.
 When working at the scale of whole genomes,
 the problem of extending indexing strategies to graphs becomes very important.
 In addition to that, indexing more than one sample in the same data structure
@@ -16,7 +17,7 @@ of one of these data structures, Pufferfish, in metagenomic analyses.
 %ne idea, we have been discussing with Travis Gagie and Christina Bousher for potential collaborations,
 %is to reuse the previously assigned colors in disjoint subgraphs and non-adjacent edges. In other words, we cannot reuse the same color for a different sample for \kmers that are adjacent, but we can have colors that are globally reused. In this case, we need to have a proper mapping from a color to its corresponding samples in different disjoint areas of the graph. As a de Bruijn graph is a special type of directed graphs with each node having at most $4$ incoming and $4$ outgoing edges, the chromatic number of such a graph is at most $9$ (maximum degree + 1~\footnote{Brooks' theorem})~\cite{cranston2015brooks}. Therefore, if we can design an efficient color-to-sample mapping, we can reduce the colors in the graph and skip assigning one bit to each color. In this case, we are approaching the problem from a different direction, rather than compressing the color matrix that we explained in~\ref{chap:rainbowfish}.
 
-In the third chapter, we talked about a new indexing tool, \pufferfish.
+In the fourth chapter, we talked about a new indexing tool, \pufferfish.
 The main advantage of a data structure like \pufferfish compared to a linear index
 is the ability to efficiently map reads to a population of genomes or individual genomes
 with annotated variants.
@@ -38,13 +39,22 @@ failed to provide the required quality.
 In our ongoing work Puffalign which is an aligner using the \pufferfish index,
 we exploit the effect of indexing genome and transcriptome together and aligning reads to
 both of them at the same time in the accuracy of the alignment results.
+
+In addition to that, currently, we focus on applying \pufferfish
+along with a probabilistic model to the metagenomic data sets
+to improve the space and time requirements for abundance estimation
+as well as accuracy using some data-driven heuristics.
+And in my thesis we anticipate having the results using these approaches
+Representing large collections of related genome via the compacted de bruijn graph.
+
 %Having reads that map to both the genome and transcriptome,
 %we can account for such an experiment's failure. Another application of dual mapping,
 %that is of biological importance, is looking for any intron retention in an RNA-seq experiment.
 %High probability of retaining introns in reads from RNA-seq experiments is known to be associated with certain disease phenotypes~\cite{faustino2003pre,tazi2009alternative}. By mapping the reads to just transcriptomes, we can never be aware of intron retention statistics.
 
-We also talked about sequence search indices and compared them with \mantis
-in chapter~\ref{chap:mantis}.
+
+We also talked about different methods and indices for sequence search
+in chapter~\ref{chap:mantis} and introduced our tool \mantis.
 \mantis is an indexing data structure for a massive RNA sequencing database enabling sequence
 search queries that is more efficient in space and time compared to other tools
 (which are based on sequence bloom trees). It uses Counting Quotient filters
@@ -53,3 +63,4 @@ and explained in chapter~\ref{chap:rainbowfish} to represent the samples contain
 which together result in a small exact indexes, on a set of sequencing experiments.
 We plan to make it dynamic and scalable to the exponentially
 growing volume of RNA sequencing data by incorporating the idea of merging two mantises to build a bigger one.
+
