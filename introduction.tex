@@ -34,23 +34,28 @@ in their analyses adds to the importance of this matter and its usefulness.
 While there have been a wide variety of tools developed
 for indexing and querying large collections of sequences in the past
 ~\citep{li2008mapping,langmead2009ultrafast,li2009fast,hach2010mrsfast,langmead2012fast,li2013aligning,liao2013subread,dobin2013star,kim2015hisat},
-we can divide them into two main categories of linear- and graph-based indices.
-In the linear-based approaches, the series of sequences are put together and treated as one large text
+we can divide them into two main categories of full-text and hash-based indices.
+In the full-text approaches, the series of sequences are put together and treated as one large text
 and then indexed based on well-known data structures for indexing large-text sequences
 such as FM-index or suffix arrays
 ~\citep{langmead2009ultrafast,li2009fast,langmead2012fast,li2013aligning,dobin2013star,kim2015hisat}.
-These indices (also called full-text indices) are usually very small, compared to the size of the
+These indices are usually very small, compared to the size of the
 raw data they index but can be slow to query.
-On the other hand, the graph-based indices make use of factoring out the repeats in the sequences
-to reduce the size of the index and provide faster queries.
-In these approaches, a sequence is
-splitted into sub-sequences of size k (called a \kmer) where each \kmer is presented only once
-in the whole index.
-Yet, although much faster than the full-text approaches, they are often orders of magnitude larger.
+On the other hand, those based on indexing fixed-length patterns of size k (\kmers)
+by putting them in a hash table
+are quite fast to query but grow so big quickly.
 Therefore, having an index with a balance between the memory and query time
 is still a continuing challenge that requires solving computational problems by applying
 existing algorithms in other areas of computer science or developing new ones.
-
+In our index \pufferfish, we pair a graph-based representation for the list of sequences
+with efficient minimum perfect hash functions (MPH)
+~~\cite{limasset2017fast}
+to devise a practically fast hash-based scheme with manageable memory.
+Graph-based indices make use of factoring out the repeats in the sequences
+to reduce the size of the index and provide faster queries.
+In these approaches, a sequence
+splits into sub-sequences of size k (called a \kmer) where each \kmer is presented only once
+in the whole index.
 One of the mostly used types of graph in graph-based indexing is the \dbg
 and its variants, the \longcdbg (cdbg), the \compdbg, and the compacted \longcdbg.
 I’ve worked on two particular problems. The first is succinct representation of membership information
