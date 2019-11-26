@@ -5,32 +5,149 @@
 
 \chapter{Going Beyond Limitation in Sequence Analyses}
 
-In this chapter, ...
+The following proposed work includes ongoing and future projects.
 
+\section{A scalable and Dynamic Search Index via Log-Structured MST Mantis Merge Tree}
+We introduce an algorithm to merge both “classic” mantis
+and the substantially more compact MST-based mantis data structures.
+To keep the memory usage low, merging mantis data structures requires
+an intelligent multi-pass algorithm that avoids holding all data for the input
+and output structures in memory at once.
+We describe a three-pass merge algorithm that makes use of minimum perfect hashing
+to enable efficient relabeling of color classes.
+For merging classic mantis data structures, this yields a memory-efficient merge algorithm
+(practically bounded by 10GB for all dataset sizes considered in this paper).
+
+For merging MST-based mantis data structures,
+we demonstrate that the LRU-based cache previously introduced to accelerate queries
+in the MST-based mantis data structure is not sufficient to enable fast queries.
+To allow the merging of MST-based mantis data structures,
+we introduce a new cache planning problem and an efficient heuristic
+that allows constructing a fixed cache of MST nodes so that, in expectation,
+no query is too far from a cached node.
+Merging of MST-based mantis data structures greatly reduces the intermediate disk-usage burden
+compared to the previous strategy of building a classic mantis structure,
+and subsequently compressing it into an MST-based one. Optimal cache planning,
+however, remains an interesting open problem.
+
+Given the ability to efficiently merge both classic and MST-based mantis data structures,
+we describe how to dynamize the structure using log-structured merge trees.
+This allows creating a mantis data structure that can be constructed in small memory,
+and which is also able to grow dynamically at the resolution of individual experiments.
+
+
+
+\section{Cedar, A Fast High Accuracy Tool for Metagenomic Abundance Estimation}
+One of the main challenges in metagenomic abundance estimation is the large number of
+false positives, resulting in reporting abundances for lots of species
+which are not present in the sequenced sample.
+Generally, metagenomic tools rely on a post-filtering step for filtering out low abundance taxa
+to reduce false positives, an approach which discards lots of reads
+assigned to low abundance species.
+I along with my teammate Mohsen propose Cedar,
+a complete pipeline from aligning metagenomic reads to estimating abundances at each taxonomic level
+which is sometimes also called profiling.
+Cedar relies on an Expectation-Maximization algorithm (EM) for estimating abundances
+and avoids reporting false positives by an iterative filtering step during the EM procedure.
+We plan to compare Cedar in the abundance estimates and detection of false positives
+to the state-of-the-art metagenomic abundance estimation tools such as Bracken~\cite{} and Karp~\cite{}.
+
+The proposing pipeline follows the same order as many previous microbiome profiling tools~\cite{},
+dividing the task of profiling into two independent sections of alignment and abundance estimation.
+We use Puffalign for the first step and Cedar for the second part
+both of which can be used in other sequence analyzing pipelines in combination with other tools.
+
+In many metagenomic quantification tasks,
+considering the depth of the high throughput sequencing techniques
+and high amount of sequence identity across genomes,
+low abundant sequences or taxa at a specific level (e.g. species)
+are usually discarded from the quantification results.
+One solution proposed to avoid reporting a lot of false positive genomes as abundant
+is having a post-filtering step
+to discard references with abundances smaller than a predefined cutoff value
+or discard all the multi-mapped reads~\cite{bracken,karp}.
+This post-filtering, induces losing the reads that were mapped to those discarded references.
+However, we believe if we keep these reads and distribute them among the remaining references,
+this can help better estimate the counts of the remaining references
+based on the following common knowledge bases:
+\begin{enumerate}
+    \item Each read is supposed to be the output of a sequencing process and contains information,
+    so discarding the read is equal to losing information.
+    \item Each read can be multi-mapped to the truth and some other references
+    in case of no errors in the sequencing.
+    \item The sequencing error rate is very low and if the mapping tool allows sub-optimal mappings,
+    we still can rely on the fact that we have the truth
+    among the set of references for a multi-mapped read.
+    \item In high throughput sequencing, there is a very low probability for having low abundant references.
+\end{enumerate}
+The last item, is the reason behind many post-processing filtering in the analyses for microbiome profiling
+and quantification.
+However, considering the rest of the facts, keeping the reads and
+distributing them among the remaining references
+can help to make the final count distribution more skewed and closer to the truth
+as we are using the information coming from more reads.
+
+Iterative thresholding is the solution we propose tackling the problem of
+``reference sparsifying without the loss of reads''.
+Through out the EM process, at the beginning of each iteration,
+we go over the following four steps of thresholding:
+\begin{enumerate}
+    \item~\textbf{Mark References as Potentially Removable (\abpt)}:
+    We go over all the references and mark a reference as potentially removable
+    if it has a count smaller than or equal to the given cutoff.
+    Our main goal is to discard as many references as possible
+    from the list of potentially removable references without losing any reads.
+    \item~\textbf{Remove Safe \abpt References Immediately}:
+    A read will be lost if all the references that are equivalent over this read are discarded
+    since the \eq that the read belongs to is defined by no references
+    and hence the read is mapped no where.
+    Therefore, out of the list of the potentially removable references,
+    one can be safely removed if in each of the \eqs it belongs to there exists at least one reference
+    that does not belong to this list.
+    \item~\textbf{Solve the Set Cover Problem for Unsafe \abpt References}:
+    For any reference $g_i$ in the remaining set of \abpt references,
+    there exists at least one \eq that all its references are \abpt including $g_i$.
+    We call such \eqs, \textit{critical \eqs} and according to our goal
+    we want to rescue minimum number of \abpt references that can make all critical \eqs
+    so that all the reads in them remain valid.
+    The definition of this problem is equivalent to the set cover problem.
+    Each reference represents a set of critical \eqs (those that it is part of)
+    and we want to select minimum number of sets (e.g. references)
+    that can explain all the set members (e.g. critical \eqs).
+    As it is known, solving the set cover problem is np-hard~\cite{},
+    therefore we choose the greedy approach to approximate the output list of references.
+    The remaining elements (i.g. reads) at the end of the set-cover process are those that cannot be removed.
+    For the rest of the list, we can safely remove them without losing any reads.
+    \item~\textbf{Update Equivalence Classes}:
+    In the last step, we need to update all \eqs that have lost any reference
+    and the weights of the references for the next iterations of EM.
+\end{enumerate}
 
 
 
 \section{Timeline}
 
+\renewcommand{\arraystretch}{2.0}
 \begin{center}
-    \begin{tabular}{|l|c|}
+    \begin{tabularx}{\linewidth}{|X|c|}
         \hline
-        \emph{de novo} clustering of scaffolds in SALSA & 2 months \\
-        16s rRNA sequence clustering & 3-4 months\\
-        Modifying and testing Bambus-3 contig layout algorithm & 1-2 months \\
-        Phased scaffolding with Hi-C like data & 4-5 months \\
-        Thesis writing & 4-5 months\\
+        Development and Experiment Design for Dynamic and Hierarchically Mergable Mantis & 2 months \\
+        Experiment Design and Extensive tests for Puffalign & 2 months \\
+        Development, and Experiment Design of Cedar for Metagenomic Abundance Estimation & 3-4 months \\
         \hline
-        \textbf{TOTAL} & 11-13 months \\
+        \textbf{TOTAL} & 7-8 months \\
         \hline
-    \end{tabular}
+    \end{tabularx}
+
 \end{center}
+
 
 Paper deadline goals:
 
 \begin{itemize}
-    \item Genome Research, July  2017: Metagenome scaffolding and variant detection with Bambus3
-    \item Bioinformatics, June  2017: DNAClust 2: Clustering 16s rRNA sequences with provable guarantees
-    \item Nature Biotechnology, October 2017: Chromosome level phased assembly of hummingbird genome with different sequencing technologies
+    \item ISMB, January 2019: Dynamic Mantis allows merging new mRNA sequence samples into the index over
+    thousands of experiments
+    \item Bioinformatics, April 2019: Puffalign, a space and time-efficient aligner on top of the Pufferfish index
+    \item Bioinformatics, July 2019: Cedar,
 \end{itemize}
 
