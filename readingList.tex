@@ -9,65 +9,67 @@
 List of 30 papers:
 \subsubsection{Counting Kmers}
 \begin{enumerate}
-    \item Jellyfish
-    \item ntCard
+    \item Marçais, Guillaume, and Carl Kingsford. "A fast, lock-free approach for efficient parallel counting of occurrences of k-mers." Bioinformatics 27.6 (2011): 764-770.
+    \item Mohamadi, Hamid, Hamza Khan, and Inanc Birol. "ntCard: a streaming algorithm for cardinality estimation in genomics data." Bioinformatics 33.9 (2017): 1324-1330.
+    \item Kokot, Marek, Maciej Długosz, and Sebastian Deorowicz. "KMC 3: counting and manipulating k-mer statistics." Bioinformatics 33.17 (2017): 2759-2761.
 \end{enumerate}
 \subsubsection{De bruijn graphs → definition, use cases, On the representation of dbgs}
 \begin{enumerate}
-    \item Succinct de Bruijn Graphs (BOSS)
-\end{enumerate}
-\subsubsection{Colored de Bruijn graph}
-\begin{enumerate}
-    \item Vari
-    \item Vari-merge
-    \item LueVari
+    \item Rayan Chikhi, Antoine Limasset, Shaun Jackman, Jared T Simpson, and Paul Medvedev. On the representation of de bruijn graphs. In International conference on Research in computational molecular biology, pages 35–55. Springer, 2014.
+    \item Bowe, Alexander, et al. "Succinct de Bruijn graphs." International Workshop on Algorithms in Bioinformatics. Springer, Berlin, Heidelberg, 2012.
 \end{enumerate}
 \subsubsection{Compacted de Bruijn graph, Direct Construction from Raw Read/Reference Sequences}
 \begin{enumerate}
-    \item Bcalm → Compacting de Bruijn graphs from sequencing data quickly and in low memory.
-    \item Twopaco
+    \item Chikhi, Rayan, Antoine Limasset, and Paul Medvedev. "Compacting de Bruijn graphs from sequencing data quickly and in low memory." Bioinformatics 32.12 (2016): i201-i208.
+    \item Minkin, Ilia, Son Pham, and Paul Medvedev. "TwoPaCo: An efficient algorithm to build the compacted de Bruijn graph from many complete genomes." Bioinformatics 33.24 (2016): 4024-4032.
+\end{enumerate}
+\subsubsection{Colored de Bruijn graph}
+\begin{enumerate}
+    \item Martin D. Muggli, Alexander Bowe, Noelle R. Noyes, Paul Morley, Keith Belk, Robert Raymond, Travis Gagie, Simon J. Puglisi, and Christina Boucher. Succinct Colored de Bruijn Graphs. Bioinformatics, 2017.
+    \item Bahar Alipanahi, Martin D Muggli, Musa Jundi, Noelle Noyes, and Christina Boucher. Resistome SNP calling via read colored de Bruijn graphs. bioRxiv, page 156174, 2018.
+    \item Bahar Alipanahi, Alan Kuhnle, and Christina Boucher. Recoloring the Colored de Bruijn Graph. In International Symposium on String Processing and Information Retrieval, pages 1–11. Springer, 2018.
 \end{enumerate}
 \subsubsection{Minimal Perfect Hash function}
 \begin{enumerate}
-    \item Fast and Scalable Minimal Perfect Hashing for Massive Key Sets → Minimal Perfect Hash Function
+    \item Limasset, Antoine, et al. "Fast and scalable minimal perfect hashing for massive key sets." arXiv preprint arXiv:1702.03154 (2017).
 \end{enumerate}
 \subsubsection{Approximate Membership Queries}
 \begin{enumerate}
-    \item Cache-, hash-, and space-efficient bloom filters
-    \item Using cascading Bloom filters to improve the memory usage for de Brujin graph
-    \item Quotient filter + squeakr → A general-Purpose Counting Filter: Making Every Bit Count
+    \item Putze, Felix, Peter Sanders, and Johannes Singler. "Cache-, hash-, and space-efficient bloom filters." Journal of Experimental Algorithmics (JEA) 14 (2009): 4.
+    \item Salikhov, Kamil, Gustavo Sacomoto, and Gregory Kucherov. "Using cascading Bloom filters to improve the memory usage for de Brujin graphs." Algorithms for Molecular Biology 9.1 (2014): 2.
+    \item Pandey, Prashant, et al. "A general-purpose counting filter: Making every bit count." Proceedings of the 2017 ACM International Conference on Management of Data. ACM, 2017.
 \end{enumerate}
 \subsubsection{Large Short Sequence Database Search}
 \begin{enumerate}
-    \item SBT
-    \item Ssbt
-    \item Allsome-sbt
-    \item Howde sbt
-    \item BIGSI (and COBS)
-    \item SeqOthello
-    \item BloomFilterTrie
+    \item Solomon, Brad, and Carl Kingsford. "Fast search of thousands of short-read sequencing experiments." Nature biotechnology 34.3 (2016): 300.
+    \item Solomon, Brad, and Carl Kingsford. "Improved search of large transcriptomic sequencing databases using split sequence bloom trees." International Conference on Research in Computational Molecular Biology. Springer, Cham, 2017.
+    \item Sun, Chen, et al. "Allsome sequence bloom trees." Journal of Computational Biology 25.5 (2018): 467-479.
+    \item Harris, Robert S., and Paul Medvedev. "Improved representation of sequence Bloom trees." BioRxiv (2018): 501452.
+    \item Bradley, Phelim, et al. "Real-time search of all bacterial and viral genomic data." BioRxiv (2017): 234955.
+    \item Yu, Ye, et al. "SeqOthello: querying RNA-seq experiments at scale." Genome biology 19.1 (2018): 167.
+    \item Holley, Guillaume, Roland Wittler, and Jens Stoye. "Bloom Filter Trie: an alignment-free and reference-free data structure for pan-genome storage." Algorithms for Molecular Biology 11.1 (2016): 3.
 \end{enumerate}
 \subsubsection{Next Generation Sequence (short-read) Alignment}
 \begin{enumerate}
-    \item Bowtie2
-    \item Star
+    \item Langmead, Ben, and Steven L. Salzberg. "Fast gapped-read alignment with Bowtie 2." Nature methods 9.4 (2012): 357.
+    \item Dobin, Alexander, et al. "STAR: ultrafast universal RNA-seq aligner." Bioinformatics 29.1 (2013): 15-21.
 \end{enumerate}
 \subsubsection{Metagenomic classification and abundance estimation (one of the use cases of short-read alignment)}
 \begin{enumerate}
-    \item Kraken
-    \item Bracken
+    \item Wood, Derrick E., and Steven L. Salzberg. "Kraken: ultrafast metagenomic sequence classification using exact alignments." Genome biology 15.3 (2014): R46.
+    \item Lu, Jennifer, et al. "Bracken: estimating species abundance in metagenomics data." PeerJ Computer Science 3 (2017): e104.
     \item Karp
 \end{enumerate}
 \subsubsection{Long-read alignment}
 \begin{enumerate}
-    \item minimap2
-    \item Mashmap
+    \item Li, Heng. "Minimap2: pairwise alignment for nucleotide sequences." Bioinformatics 34.18 (2018): 3094-3100.
+    \item Jain, Chirag, et al. "A fast approximate algorithm for mapping long reads to large reference databases." International Conference on Research in Computational Molecular Biology. Springer, Cham, 2017.
 \end{enumerate}
 \subsubsection{Fusion Detection → Application of some of the previous tools, methods, and algorithms}
 \begin{enumerate}
-    \item deepestFusion
-    \item starFusion
-    \item Comprehensive evaluation of fusion transcript detection algorithms and a meta-caller to combine top performing methods in paired-end RNA-seq data
+    \item Dehghannasiri, Roozbeh, et al. "Improved detection of gene fusions by applying statistical methods reveals new oncogenic RNA cancer drivers." bioRxiv (2019): 659078.
+    \item Haas, Brian, et al. "STAR-Fusion: fast and accurate fusion transcript detection from RNA-Seq." BioRxiv (2017): 120295.
+    \item Liu, Silvia, et al. "Comprehensive evaluation of fusion transcript detection algorithms and a meta-caller to combine top performing methods in paired-end RNA-seq data." Nucleic acids research 44.5 (2015): e47-e47.
 \end{enumerate}
 
 

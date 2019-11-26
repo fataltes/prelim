@@ -8,33 +8,57 @@
 The following proposed work includes ongoing and future projects.
 
 \section{A scalable and Dynamic Search Index via Log-Structured MST Mantis Merge Tree}
-We introduce an algorithm to merge both “classic” mantis
-and the substantially more compact MST-based mantis data structures.
-To keep the memory usage low, merging mantis data structures requires
-an intelligent multi-pass algorithm that avoids holding all data for the input
-and output structures in memory at once.
-We describe a three-pass merge algorithm that makes use of minimum perfect hashing
-to enable efficient relabeling of color classes.
-For merging classic mantis data structures, this yields a memory-efficient merge algorithm
-(practically bounded by 10GB for all dataset sizes considered in this paper).
 
-For merging MST-based mantis data structures,
-we demonstrate that the LRU-based cache previously introduced to accelerate queries
-in the MST-based mantis data structure is not sufficient to enable fast queries.
+As showed in~\ref{chap:mantis}, Mantis, our large sequencing search index
+was orders of magnitude faster than the state-of-the-art tools at that time (SBT-like structures)
+although requiring a smaller fraction of memory compared to them.
+We were able to scale Mantis to $10,000$ raw sequencing samples in our next work
+by reformatting the color representation from bit-vectors to a minimum spanning tree
+linking colors based on the minimum required flipping bits
+to construct one color bitvectors from other colors.
+However, even until this point the problem of scalability is not fully addressed
+and resolved.
+Comparing the original Mantis's representation, which we call ``classic'' mantis
+with the MST-based representation, we observed a flipping point in the scalability bottleneck
+from the color information to the \kmer filter representation, \cqf
+in larger datasets.
+In addition to that, the necessity of having the color bit matrix as the prerequisite
+to construct the MST over the color bitvectors, is another obstacle
+to achieving the goal of scalability.
+
+In this proposal, we, I in collaboration with the Mantis team
+~\footnote{Professors Rob Patro, Rob Johnson, Micheal Ferdman, Micheal Bender, Prashant Pandey, Jamshed Khan,
+and Sergey Madaminov} introduce an algorithm to merge both “classic”
+and the MST-based mantis data structures. The later, gives us the advantage of skipping
+construction of the intermediate large color bit matrices by instead, directly merging
+the MST representations for its two smaller constituent Mantises.
+We also require to merge the two filters along with the color representations.
+However, since the keys are sorted in the two \cqfs, the merging of them
+is conceptually equal to merging two sorted list.
+The only challenge in that process is keeping the memory usage low,
+for which we propose an intelligent multi-pass algorithm that avoids holding
+all data for the input and output structures in memory at once.
+In fact, based on the proposed strategy, the memory is constant and
+practically bounded by 10GB for all dataset sizes considered in our initial experiments.
+
 To allow the merging of MST-based mantis data structures,
-we introduce a new cache planning problem and an efficient heuristic
-that allows constructing a fixed cache of MST nodes so that, in expectation,
-no query is too far from a cached node.
-Merging of MST-based mantis data structures greatly reduces the intermediate disk-usage burden
-compared to the previous strategy of building a classic mantis structure,
-and subsequently compressing it into an MST-based one. Optimal cache planning,
-however, remains an interesting open problem.
+using the previously introduced LRU-cache to speed up fetching the color bitvectors
+was not sufficient enough as the nature of the queries in merging two Mantises
+is different from the typical queries in a biological sequence search.
+Therefore, we are facing a new challenge in how to optimally plan the caching
+to help the query time. We plan to tackle the cache planning problem and
+propose an efficient heuristic that allows constructing a fixed cache of MST nodes
+so that, in expectation, no query is too far from a cached node.
 
+Another deficiency of the previously proposed structure, Mantis,
+is its lack of being dynamically updatable in the sense that one cannot
+add a new raw sequencing sample to the index without accepting the burden of
+reconstructing Mantis over all the samples again including the new one.
 Given the ability to efficiently merge both classic and MST-based mantis data structures,
-we describe how to dynamize the structure using log-structured merge trees.
-This allows creating a mantis data structure that can be constructed in small memory,
-and which is also able to grow dynamically at the resolution of individual experiments.
+we can think of one way to dynamize the structure as using log-structured merge trees.
 
+These two goals together allow creating a mantis data structure that can be constructed in small memory,
+and which is also able to grow dynamically at the resolution of individual experiments.
 
 
 \section{Cedar, A Fast High Accuracy Tool for Metagenomic Abundance Estimation}
