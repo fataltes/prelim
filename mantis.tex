@@ -634,7 +634,7 @@ $k=23$ for all experiments.
     represented in that experiment (taken from the SBT paper). Note,
     the \kmers with count of ``cutoff'' \emph{are} included at each
     threshold.}
-    \vspace{-2.5em}
+%    \vspace{-2.5em}
 \end{table}
 
 \subsection{Evaluation results}
@@ -828,19 +828,20 @@ for each of the two construction phases.
 
 \begin{table}[t]
     \centering
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{r||@{\hskip 0.3in}c@{\hskip 0.3in}c@{\hskip 0.3in}c@{\hskip 0.3in}c@{\hskip 0.3in}c@{\hskip 0.3in}c}
         \hline
         \# of threads  & 1 & 2 & 4 & 8 & 16 & 32\\
         \hline
         Run time (hh:mm:ss) & 02:47:08 & 01:38:26 & 01:02:42 & 00:31:57 & 00:22:00 & 00:14:17\\
         \hline
-    \end{tabular}
+    \end{tabular}}
     \vspace{0.1in}
     \caption{\label{tab:paraBenchmarks} The \mst
     construction time for $1000$ experiments using
     different number of threads.
     Memory stays the same across all the runs.}
-    \vspace{-2.5em}
+%    \vspace{-2.5em}
 \end{table}
 
 Overall, the MST construction time is only a tiny fraction of the
@@ -861,17 +862,18 @@ is $111G$.
 %
 \begin{table}[t]
     \centering
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{l@{\hskip 0.2in}|c@{\hskip 0.2in}c@{\hskip 0.2in}c|c@{\hskip 0.2in}c@{\hskip 0.2in}c}
         \hline
         & \multicolumn{3}{c}{\mantis} & \multicolumn{3}{c}{\mantis} \\
         \hline
         \hline
-        & index load $+$ query & query & space & index load $+$ query & query & space \\
-        10 Transcripts & 1 min 10 sec & 0.3 sec & 118GB & 32 min 59 sec & 0.5 sec & 290GB \\
-        100 Transcripts & 1 min 17 sec & 8 sec & 119GB & 34 min 33 sec & 11 sec & 290GB \\
-        1000 Transcripts & 2 min 29 sec & 79 sec & 120GB & 46 min 4 sec & 80 sec & 290GB \\
+        & index load $+$ query & query & space(GB) & index load $+$ query & query & space(GB) \\
+        10 Transcripts & 1 min 10 sec & 0.3 sec & 118 & 32 min 59 sec & 0.5 sec & 290 \\
+        100 Transcripts & 1 min 17 sec & 8 sec & 119 & 34 min 33 sec & 11 sec & 290 \\
+        1000 Transcripts & 2 min 29 sec & 79 sec & 120 & 46 min 4 sec & 80 sec & 290 \\
         \hline
-    \end{tabular}
+    \end{tabular}}
     \vspace{0.1in}
     \caption{\label{tab:query-benchmark} Query time and resident memory for
     mantis using the \mst-based representation for color information and the
@@ -880,8 +882,9 @@ is $111G$.
     be required if the index was already loaded in e.g. a server-based search
     tool). Note that, in resident memory usage for the \mst-based representation,
     the \cqf always dominates the total required memory.}
-    \vspace{-3em}
+%    \vspace{-3em}
 \end{table}
+
 %
 We evaluate query speed in the following manner. We select random
 subsets, of increasing size, of transcripts from the human
