@@ -1,6 +1,6 @@
 \chapter{Conclusion}
 
-In this document, we’ve addressed the problem of reference-free and -based indexing.
+In this document, we’ve addressed the problem of reference-free and reference-based indexing.
 When working at the scale of whole genomes,
 the problem of extending indexing strategies to graphs becomes very important.
 In addition to that, indexing more than one sample in the same data structure
@@ -21,7 +21,7 @@ In the fourth chapter, we talked about a new indexing tool, \pufferfish.
 The main advantage of a data structure like \pufferfish compared to a linear index
 is the ability to efficiently map reads to a population of genomes or individual genomes
 with annotated variants.
-Current tools that are used for alignment and mapping are either suitable for genome or transcriptome,
+Current tools that are used for alignment and mapping are either mostly suitable for genome or transcriptome,
 but not both. \pufferfish fills the gap by allowing fast and accurate mapping
 to a collection of genomes and transcriptomes at the same time.
 This ability paves the way for accomplishing applications such as novel exon discovery
@@ -33,19 +33,20 @@ One immediate outcome of having short reads mapped to both genome and transcript
 is in RNA-seq quality control.
 If we just look at the transcriptome mapping outcome,
 we could simply throw all the non-mapped reads out,
-ignoring the fact that not being mapped at all is a different observation than being mapped to an intron.
-A large fraction of reads mapping to introns is an evidence that the RNA-seq experiment
-failed to provide the required quality.
-In our ongoing work Puffalign which is an aligner using the \pufferfish index,
-we exploit the effect of indexing genome and transcriptome together and aligning reads to
+ignoring the fact that not being mapped at all
+is a different observation than being mapped to an intron or an intergenic region.
+A large fraction of reads mapping to introns could be the evidence that the RNA-seq experiment
+failed to provide the required quality or the biological signal of intron retention.
+In our ongoing work, Puffalign, which is an aligner using the \pufferfish index,
+we exploit the effect of indexing the genome and transcriptome together and aligning reads to
 both of them at the same time in the accuracy of the alignment results.
 
 In addition to that, currently, we focus on applying \pufferfish
-along with a probabilistic model to the metagenomic data sets
+along with a probabilistic model to metagenomic data
 to improve the space and time requirements for abundance estimation
-as well as accuracy using some data-driven heuristics.
-And in my thesis we anticipate having the results using these approaches
-Representing large collections of related genome via the compacted de bruijn graph.
+as well as accuracy using certain domain-specific observations.
+In my thesis we anticipate having the results using these approaches
+representing large collections of related genome via the compacted de bruijn graph.
 
 %Having reads that map to both the genome and transcriptome,
 %we can account for such an experiment's failure. Another application of dual mapping,
@@ -55,12 +56,14 @@ Representing large collections of related genome via the compacted de bruijn gra
 
 We also talked about different methods and indices for sequence search
 in chapter~\ref{chap:mantis} and introduced our tool \mantis.
-\mantis is an indexing data structure for a massive RNA sequencing database enabling sequence
-search queries that is more efficient in space and time compared to other tools
-(which are based on sequence bloom trees). It uses Counting Quotient filters
+\mantis is an exact indexing data structure (no false positives)
+for a massive RNA sequencing database enabling sequence
+search queries that is efficient in space and time compared to other tools
+(which are mostly based on sequence bloom trees). It uses counting quotient filters
 to index \kmers and the representation introduced in \rainbowfish
 and explained in chapter~\ref{chap:rainbowfish} to represent the samples containing the \kmer.
-which together result in a small exact indexes, on a set of sequencing experiments.
+This results in a small exact index, on a set of sequencing experiments.
 We plan to make it dynamic and scalable to the exponentially
-growing volume of RNA sequencing data by incorporating the idea of merging two mantises to build a bigger one.
+growing volume of RNA sequencing data
+by incorporating the idea of merging mantises efficiently to build a bigger one.
 

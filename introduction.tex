@@ -31,6 +31,12 @@ in their analyses adds to the importance of this matter and its usefulness.
 
 %\paragraph*{What did we know about this topic before I did this study?}
 \paragraph*{}
+%Suggested by Rob
+%full-text is small and allows arbitrary length lookup, but has generally poor constant factors
+%hash-based is very fast, but has bad constant factors for space
+%the graph is a way to factorize repetitive sequence to make schemes more efficient in terms of space
+%but we pair the graph idea with efficient MPH to devise a practically fast hash-based scheme with manageable memory
+
 While there have been a wide variety of tools developed
 for indexing and querying large collections of sequences in the past
 ~\citep{li2008mapping,langmead2009ultrafast,li2009fast,hach2010mrsfast,langmead2012fast,li2013aligning,liao2013subread,dobin2013star,kim2015hisat},
@@ -113,7 +119,7 @@ where $\gamma \leq 1$, is the hash table loading factor.
 This storage is considerably large for even one genome data set,
 such as the human genome (starting from 40GB while depending on the loading factor can grow to 100GB or more).
 Yet, a few different data structures and algorithms have been proposed to reduce the size of a \dbg
-and represent it efficiently. One category of these data structures use the Bloom Filter~\cite{}
+and represent it efficiently. One category of these data structures use the Bloom Filter~\cite{bloom1970space}
 to represent a \dbg~\cite{pell2012scaling,salikhov2013using,chikhi2012space,chikhi2013space,holley2016bloom}.
 Other than these, there are a few proposed representations
 that rely on succinct data structures~\cite{gbmp2014sea}
@@ -157,7 +163,7 @@ However, indexing a \ccdbg is still a challenge that needs further investigation
 \paragraph*{}
 %\fatemeh{Is this still true?}
 So far, we know of two other tools, kallisto~\cite{Bray2016Kallisto}
-, deBGA~\cite{liu2016debga} and deSALT~\cite{} that are used for indexing \ccdbgs.
+, deBGA~\cite{liu2016debga} and deSALT~\cite{liu2019desalt} that are used for indexing \ccdbgs.
 Although these tools are very efficient in searching for a \kmer, the memory they need is large,
 so that in the case of very large datasets their memory exceeds the limits of a moderate server.
 In section~\ref{chap:pufferfish}, we propose a memory-efficient indexing data structure
@@ -234,7 +240,8 @@ a space- and time-efficient index for searching sequences in large
 collections of experiments which is based on \cdbgs.
 The ``color'' associated with each \kmer
 in a \cdbg is the set of experiments in which that \kmer occurs. We
-use an exact \cqf~\cite{PandeyBeJo17}, an AMQ structure~\cite{}
+use an exact \cqf~\cite{PandeyBeJo17},
+an Approximate Membership Query (AMQ) structure
 to store a table mapping each \kmer to a color ID,
 and another table mapping color IDs to the actual set of experiments
 containing that \kmer and achieve 20$\%$ times smaller memory,
