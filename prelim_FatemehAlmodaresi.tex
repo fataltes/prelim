@@ -42,8 +42,9 @@
 %\usepackage{our-comments}
 
 \usepackage{siunitx}
-\usepackage{amssymb}
-\usepackage{color}
+%\usepackage{amssymb}
+\usepackage{color,colortbl}
+%\usepackage{color}
 \usepackage{booktabs}
 \usepackage[capitalise,nameinlink]{cleveref}
 
@@ -141,6 +142,7 @@
 %\usepackage{algorithm}
 %\usepackage[noend]{algpseudocode}
 \usepackage{multirow}
+
 %\usepackage[justification=centering]{caption}
 
 \makeatletter
@@ -259,6 +261,48 @@ qt=false%
 \newcommand{\twopaco}{TwoPaCo\xspace}
 \newcommand{\ccdbg}{compacted de Bruijn graph\xspace}
 \newcommand{\ccdbgs}{compacted de Bruijn graphs\xspace}
+\newcommand{\gray}{\rowcolor[gray]{0.9}}
+\definecolor{maroon}{cmyk}{0,0.87,0.68,0.32}
+
+%\newtheorem{thm}{Theorem}
+%\newtheorem{observation}[thm]{\textbf{Observation}}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+% \newtheorem{observation}[thm]{\textbf{Observation}}
+\newcommand{\mem}{\texttt{MEM}\xspace}
+\newcommand{\mems}{\texttt{MEM}s\xspace}
+\newcommand{\system}{pufferfish\xspace}
+%\newcommand{\dbg}{de Bruijn graph\xspace}
+%\newcommand{\ccdbg}{compacted de Bruijn graph\xspace}
+%\newcommand{\kmer}{$k$-mer\xspace}
+%\newcommand{\kmers}{$k$-mers\xspace}
+%\newcommand{\bv}{\texttt{bv}\xspace}
+%\newcommand{\ctab}{\texttt{utab}\xspace}
+\newcommand{\etab}{\texttt{etab}\xspace}
+%\newcommand{\cseq}{\texttt{useq}\xspace}
+\newcommand{\pos}{\texttt{pos}\xspace}
+\DeclareMathOperator{\hash}{h}
+\newcommand*\canon[1]{\ensuremath{\hat{#1}}}
+\newcommand*\rc[1]{\ensuremath{\bar{#1}}}
+%\newcommand{\rank}{\texttt{rank}\xspace}
+%\newcommand{\select}{\texttt{select}\xspace}
+%\newcommand{\kallisto}{kallisto\xspace}
+%\newcommand{\kraken}{Kraken\xspace}
+\newcommand{\clark}{Clark\xspace}
+%\newcommand{\bwa}{BWA\xspace}
+%\newcommand{\twopaco}{TwoPaCo\xspace}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newcommand{\sampvec}{\texttt{isSamp}\xspace}
+\newcommand{\canonvec}{\texttt{isCanon}\xspace}
+\newcommand{\extvec}{\texttt{Direction}\xspace}
+\newcommand{\qextvec}{\texttt{QueryExt}\xspace}
+\newcommand{\eqtab}{\texttt{eqtab}\xspace}
+%\newif\ifcomments        % here's how we switch comments on and off
+%\commentstrue
+
+
+
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
